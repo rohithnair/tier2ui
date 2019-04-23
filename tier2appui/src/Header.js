@@ -5,7 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom'
 const styles = {
   root: {
     flexGrow: 1,
@@ -17,7 +18,7 @@ const styles = {
 };
 
 function Header(props) {
-  const { classes } = props;
+  const { classes ,history} = props;
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -28,6 +29,7 @@ function Header(props) {
           <Typography variant="h6" color="inherit">
             Tier 2 Sponsors List
           </Typography>
+          <Button color="inherit" onClick={() => history.push('/deleted')}>Deleted companies</Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -36,4 +38,4 @@ function Header(props) {
 
  
 
-export default withStyles(styles)(Header);
+export default withRouter(withStyles(styles)(Header));
