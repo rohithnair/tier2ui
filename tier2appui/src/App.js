@@ -22,10 +22,10 @@ const columns = [
 
 
 const options ={
-serverSide:true,
+serverSide:false,
 filter: false,
 selectableRows: false, 
-search: false,
+search: true,
 print: false,
 download: false,
 rowsPerPage:10,
