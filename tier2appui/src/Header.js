@@ -29,6 +29,7 @@ function Header(props) {
           <Typography variant="h6" color="inherit">
             Tier 2 Sponsors List
           </Typography>
+          <Button color="inherit" onClick={() => history.push('/')}>Recently added</Button>
           <Button color="inherit" onClick={() => history.push('/deleted')}>Deleted companies</Button>
         </Toolbar>
       </AppBar>

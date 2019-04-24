@@ -5,7 +5,7 @@ class TierApi
 
     async GetRecentTier2Providers()
     {
-              return await axiosCaller.post('tierData/MostRecent');
+              return await axiosCaller.post('tierDataRecent/Companies');
     }
 
 
@@ -14,11 +14,13 @@ class TierApi
               return await axiosCaller.get('tierDataDeleted/Count');
     }
 
-    async GetTier2Deleted(pageNumber,rowsPerPage)
+
+    async GetTier2Deleted(pageNumber,rowsPerPage,searchText =null)
     {
            let params = {
 PageNumber: pageNumber,
-RowsPerPage : rowsPerPage
+RowsPerPage : rowsPerPage,
+Text:searchText
            };
               return await axiosCaller.post('tierDataDeleted/Companies',params,{
                 headers: {
