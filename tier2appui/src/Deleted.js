@@ -50,7 +50,7 @@ class Deleted extends Component {
                     ...prevState.options,
                     count: result.data,
                 },
-                data:companyResults.data.Companies
+                data:companyResults.data.companies
             }));
         })
         .catch(ex=>
@@ -98,7 +98,7 @@ this.setInitialData();
   changePage(searchCompany,page,rowsPerPage) {
     this.getDeleted(page,rowsPerPage,searchCompany).then((result) => {
     
-        this.setState({data:result.data.Companies});
+        this.setState({data:result.data.companies});
       });
   }
 
@@ -109,9 +109,9 @@ this.setInitialData();
         this.setState(prevState => ({
             options: {
                 ...prevState.options,
-                count: result.data.Count,
+                count: result.data.count,
             },
-            data:result.data.Companies
+            data:result.data.companies
         }));
        
       });

@@ -17,7 +17,7 @@ class TierApi
 
     async GetTier2AllCount()
     {
-              return await axiosCaller.get('tierDataAll/Count');
+              return await axiosCaller.get('tierData/Count');
     }
 
 
@@ -43,7 +43,7 @@ PageNumber: pageNumber,
 RowsPerPage : rowsPerPage,
 Text:searchText
        };
-          return await axiosCaller.post('tierDataAll/Companies',params,{
+          return await axiosCaller.post('tierData/Companies',params,{
             headers: {
                 'Content-Type': 'application/json',
             }});
