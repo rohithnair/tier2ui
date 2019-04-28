@@ -43,11 +43,11 @@ class App extends Component {
     this.getTierData().then((result) => {
   
       this.setState({data:result.data});
+    }).catch(()=>{
+
+      this.setState({data:[]});
     });
   }
-
-
-
 
   async getTierData()
   {

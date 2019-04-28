@@ -50,11 +50,30 @@ class Deleted extends Component {
                     ...prevState.options,
                     count: result.data,
                 },
-                data:companyResults.data
+                data:companyResults.data.Companies
             }));
-        });
+        })
+        .catch(ex=>
+          {
+            this.setState(prevState => ({
+              options: {
+                  ...prevState.options,
+                  count: 0,
+              },
+              data:[]
+          }));
+          });
         
-    });
+    }).catch(ex=>
+      {
+        this.setState(prevState => ({
+          options: {
+              ...prevState.options,
+              count: 0,
+          },
+          data:[]
+      }));
+      });
   }
  
   componentDidMount()
@@ -76,30 +95,23 @@ this.setInitialData();
    return api.GetTier2Deleted(pageNumber,rowsPerPage,searchText);
   }
 
-  async getDeletedByName(searchText)
-  {
-   let api = new TierApi();
-   return api.GetTier2DeletedByName(searchText);
-  }
-
-
-  changePage(page,rowsPerPage) {
-    this.getDeleted(page,rowsPerPage,null).then((result) => {
+  changePage(searchCompany,page,rowsPerPage) {
+    this.getDeleted(page,rowsPerPage,searchCompany).then((result) => {
     
-        this.setState({data:result.data});
+        this.setState({data:result.data.Companies});
       });
   }
 
-  searchPage(searchCompany)
+  searchPage(searchCompany,page,rowsPerPage)
   {
-    this.getDeleted(null,null,searchCompany).then((result) => {
+    this.getDeleted(page,rowsPerPage,searchCompany).then((result) => {
     
         this.setState(prevState => ({
             options: {
                 ...prevState.options,
-                count: result.data.length,
+                count: result.data.Count,
             },
-            data:result.data
+            data:result.data.Companies
         }));
        
       });
@@ -107,21 +119,18 @@ this.setInitialData();
 
 
   onTableChange (action, tableState)  {
-    console.log(action);
     switch (action) {
        
         case 'changePage':
-        console.log(this);
-         this.changePage(tableState.page,tableState.rowsPerPage);
+         this.changePage(tableState.searchText,tableState.page,tableState.rowsPerPage);
           break;
         case 'search':
-        console.log(tableState.searchText);
         if(tableState.searchText === null || tableState.searchText.trim().length === 0)
         {
             this.setInitialData();
         }
         else  if(tableState.searchText && tableState.searchText.length >3)
-          this.searchPage(tableState.searchText);
+          this.searchPage(tableState.searchText,tableState.page,tableState.rowsPerPage);
            break;
           default:
           break;

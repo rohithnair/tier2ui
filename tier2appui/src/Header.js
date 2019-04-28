@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 const styles = {
   root: {
     flexGrow: 1,
@@ -14,6 +14,12 @@ const styles = {
   menuButton: {
     marginLeft: -18,
     marginRight: 10,
+  },
+  ButtonMargin:{
+    marginLeft: 40
+  },
+  Button: {
+    marginLeft: 40
   },
 };
 
@@ -29,8 +35,11 @@ function Header(props) {
           <Typography variant="h6" color="inherit">
             Tier 2 Sponsors List
           </Typography>
-          <Button color="inherit" onClick={() => history.push('/')}>Recently added</Button>
-          <Button color="inherit" onClick={() => history.push('/deleted')}>Deleted companies</Button>
+          <span className={classes.ButtonMargin}>
+          <Button className={classes.Button} color="inherit" onClick={() => history.push('/')}>Recently added</Button>
+          <Button className={classes.Button} color="inherit" onClick={() => history.push('/all')}>All</Button>
+          <Button className={classes.Button} color="inherit" onClick={() => history.push('/deleted')}>Deleted companies</Button>
+          </span>
         </Toolbar>
       </AppBar>
     </div>
