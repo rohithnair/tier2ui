@@ -20,6 +20,7 @@ class Deleted extends Component {
     this.changePage = this.changePage.bind(this);
     this.onTableChange = this.onTableChange.bind(this);
     this.searchPage = this.searchPage.bind(this);
+    this.changePageForRows = this.changePageForRows.bind(this);
     this.setInitialData = this.setInitialData.bind(this);
     this.options ={
         serverSide:true,
@@ -29,6 +30,7 @@ class Deleted extends Component {
         print: false,
         download: false,
         rowsPerPage:10,
+        rowsPerPageOptions:[10,15,20],
         sort:false,
         count :-1,
         onTableChange :this.onTableChange
@@ -102,6 +104,23 @@ this.setInitialData();
       });
   }
 
+  changePageForRows(searchCompany,page,changedRowsPerPage) {
+    this.getDeleted(page,changedRowsPerPage,searchCompany).then((result) => {
+    
+      this.setState(prevState => ({
+        options: {
+            ...prevState.options,
+            rowsPerPage: changedRowsPerPage,
+        },
+        data:result.data.companies
+    }));
+      });
+  }
+
+
+
+
+
   searchPage(searchCompany,page,rowsPerPage)
   {
     this.getDeleted(page,rowsPerPage,searchCompany).then((result) => {
@@ -121,8 +140,14 @@ this.setInitialData();
   onTableChange (action, tableState)  {
     switch (action) {
        
+      case 'changeRowsPerPage':
+      this.changePageForRows(tableState.searchText,tableState.page,tableState.rowsPerPage);
+      window.scrollTo(0, 0);
+       break;
+
         case 'changePage':
          this.changePage(tableState.searchText,tableState.page,tableState.rowsPerPage);
+         window.scrollTo(0, 0);
           break;
         case 'search':
         if(tableState.searchText === null || tableState.searchText.trim().length === 0)
@@ -131,6 +156,7 @@ this.setInitialData();
         }
         else  if(tableState.searchText && tableState.searchText.length >3)
           this.searchPage(tableState.searchText,tableState.page,tableState.rowsPerPage);
+          window.scrollTo(0, 0);
            break;
           default:
           break;

@@ -32,6 +32,7 @@ class All extends Component {
   {
     super();
     this.changePage = this.changePage.bind(this);
+    this.changePageForRows = this.changePageForRows.bind(this);
     this.onTableChange = this.onTableChange.bind(this);
     this.searchPage = this.searchPage.bind(this);
     this.setInitialData = this.setInitialData.bind(this);
@@ -42,6 +43,7 @@ class All extends Component {
         print: false,
         download: false,
         rowsPerPage:10,
+        rowsPerPageOptions:[10,15,20],
         sort:false,
         count :-1,
         onTableChange :this.onTableChange
@@ -58,7 +60,7 @@ class All extends Component {
   
         this.getAll(1,this.state.options.rowsPerPage).then((companyResults) =>{
 
-            console.log("Data loaded");
+           
             this.setState(prevState => ({
                 options: {
                     ...prevState.options,
@@ -88,13 +90,13 @@ class All extends Component {
         }));
     });
     
-    ;
+   
   }
  
   componentDidMount()
   {
 this.setInitialData();
-   
+
   }
 
 
@@ -114,6 +116,20 @@ this.setInitialData();
     this.getAll(page,rowsPerPage,industry).then((result) => {
     
         this.setState({data:result.data.companies});
+      });
+  }
+
+  changePageForRows(page,changedRowsPerPage,industry) {
+    this.getAll(page,changedRowsPerPage,industry).then((result) => {
+    
+      this.setState(prevState => ({
+        options: {
+            ...prevState.options,
+            rowsPerPage: changedRowsPerPage,
+        },
+        data:result.data.companies
+    }));
+
       });
   }
 
@@ -140,16 +156,25 @@ this.setInitialData();
         if(tableState.filterList && tableState.filterList[2] && (tableState.filterList[2][0] === null || tableState.filterList[2][0] ===undefined ))
         {
             this.setInitialData();
+            window.scrollTo(0, 0);
         }
         else
         {
            this.searchPage(tableState.filterList[2][0],tableState.page,tableState.rowsPerPage);
+           window.scrollTo(0, 0);
         }
         break;
 
         case 'changePage':
          this.changePage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0]);
+         window.scrollTo(0, 0);
           break;
+
+          case 'changeRowsPerPage':
+          this.changePageForRows(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0]);
+          window.scrollTo(0, 0);
+          
+           break;
           default:
           break;
       }

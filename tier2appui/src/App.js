@@ -21,22 +21,28 @@ const columns = [
 
 
 
-const options ={
-serverSide:false,
-filter: false,
-selectableRows: false, 
-search: true,
-print: false,
-download: false,
-rowsPerPage:10,
-sort:false
-};
+
 class App extends Component {
 
   constructor()
   {
     super();
-    this.state = {data: []};
+
+    this.onTableChange = this.onTableChange.bind(this);
+
+    this.options ={
+      serverSide:false,
+      filter: false,
+      selectableRows: false, 
+      search: true,
+      print: false,
+      download: false,
+      rowsPerPage:10,
+      sort:false,
+      rowsPerPageOptions:[10,15,20],
+      onTableChange :this.onTableChange
+      };
+      this.state = {data: [],options:this.options};
   }
   componentDidMount()
   {
@@ -45,7 +51,7 @@ class App extends Component {
       this.setState({data:result.data});
     }).catch(()=>{
 
-      this.setState({data:[]});
+      this.setState({data:[],options:this.options});
     });
   }
 
@@ -55,7 +61,26 @@ class App extends Component {
    return api.GetRecentTier2Providers();
   }
 
+  onTableChange (action, tableState)  {
+    
+    switch (action) {
+       
+        case 'filterChange':
+            window.scrollTo(0, 0);
+        break;
 
+        case 'changePage':
+         window.scrollTo(0, 0);
+          break;
+
+          case 'changeRowsPerPage':
+          window.scrollTo(0, 0);
+          
+           break;
+          default:
+          break;
+      }
+}
 
   render() {
     return (
@@ -69,7 +94,7 @@ class App extends Component {
         <MUIDataTable
   columns={columns}
   data ={this.state.data}
-  options ={options}
+  options ={this.state.options}
 />
       </div> </React.Fragment>
     );
