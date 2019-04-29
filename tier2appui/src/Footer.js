@@ -36,7 +36,7 @@ function Footer(props) {
       <React.Fragment>
     <AppBar position="relative" color="primary" className={classes.appBar}>
     <Toolbar className={classes.toolbar}>
-                © UKTierSponsors  2019 .Disclaimer : Data extracted from&nbsp;&nbsp;
+                © UKTierSponsors  2019. Disclaimer : Data extracted from&nbsp;&nbsp;
 
                 <Link className={classes.link}   color="inherit"
        href="http://www.ukba.homeoffice.gov.uk/sitecontent/documents/employersandsponsors/pointsbasedsystem/pbsregisterofsponsors"
