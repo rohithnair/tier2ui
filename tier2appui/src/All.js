@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MUIDataTable from "mui-datatables";
 import TierApi from './services/TierApi';
 import industries from './Industries';
-
+import {Helmet} from "react-helmet";
 function renderDate(value)
 {
   var dateLocal = new Date(value);
@@ -159,7 +159,14 @@ this.setInitialData();
 
 let countOfRows = this.state.options.count;
     return (
+ <React.Fragment>
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>Tier 2 Sponsor List - All companies</title>
+      <link rel="canonical" href="%PUBLIC_URL%/all" />
+  </Helmet>
 <div>
+ 
 {countOfRows >= 0 ?
 <div className="App">
         <MUIDataTable
@@ -168,6 +175,7 @@ let countOfRows = this.state.options.count;
   options ={this.state.options}
 />
       </div> : null }</div>
+      </React.Fragment>
     );    
   }
 

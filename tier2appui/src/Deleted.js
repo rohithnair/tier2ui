@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MUIDataTable from "mui-datatables";
 import TierApi from './services/TierApi';
-
+import {Helmet} from "react-helmet";
 
 const columns = [
   {name:"organisationName",label:'Company', options: {searchable:true}},
@@ -141,6 +141,12 @@ this.setInitialData();
 
 let countOfRows = this.state.options.count;
     return (
+      <React.Fragment>
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>Tier 2 Sponsor List - Deleted companies</title>
+      <link rel="canonical" href="%PUBLIC_URL%/deleted" />
+  </Helmet>
 <div>
 {countOfRows >= 0 ?
 <div className="App">
@@ -149,7 +155,7 @@ let countOfRows = this.state.options.count;
   data ={this.state.data}
   options ={this.state.options}
 />
-      </div> : null }</div>
+      </div> : null }</div> </React.Fragment>
     );    
   }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MUIDataTable from "mui-datatables";
 import TierApi from './services/TierApi';
-
+import {Helmet} from "react-helmet";
 
 
 function renderDate(value)
@@ -59,13 +59,19 @@ class App extends Component {
 
   render() {
     return (
+      <React.Fragment>
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>Tier 2 Sponsor List - Recently added companies</title>
+      <link rel="canonical" href="%PUBLIC_URL%/recentlyadded" />
+  </Helmet>
       <div className="App">
         <MUIDataTable
   columns={columns}
   data ={this.state.data}
   options ={options}
 />
-      </div>
+      </div> </React.Fragment>
     );
   }
 }

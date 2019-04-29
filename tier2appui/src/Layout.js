@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import Header from  './Header';
 import Footer from './Footer';
+import { withStyles } from '@material-ui/core/styles';
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+};
 class Layout extends Component {
+ 
     render() {
-
+      const { classes } = this.props;
         return(
-            <div>
+            <div className={classes.root}>
           <Header />
            {this.props.children}
            <Footer />
@@ -15,5 +22,5 @@ class Layout extends Component {
     }
   }
   
-  export default Layout;
+  export default withStyles(styles)(Layout);
   

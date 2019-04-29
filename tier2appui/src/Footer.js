@@ -39,11 +39,11 @@ function Footer(props) {
                 © UKTierSponsors  2019 .Disclaimer : Data extracted from&nbsp;&nbsp;
 
                 <Link className={classes.link}   color="inherit"
-      component="button" href="http://www.ukba.homeoffice.gov.uk/sitecontent/documents/employersandsponsors/pointsbasedsystem/pbsregisterofsponsors"
+       href="http://www.ukba.homeoffice.gov.uk/sitecontent/documents/employersandsponsors/pointsbasedsystem/pbsregisterofsponsors"
  target="_blank" rel="noopener noreferrer" 
     >Sponsor List</Link>&nbsp;&nbsp;of &nbsp;
     <Link className={classes.link} color="inherit"
-      component="button" href="http://www.ukba.homeoffice.gov.uk/" target="_blank" rel="noopener noreferrer" 
+      href="http://www.ukba.homeoffice.gov.uk/" target="_blank" rel="noopener noreferrer" 
     >UKBA
   </Link>
   
