@@ -24,6 +24,14 @@ const columns = [
 
 class App extends Component {
 
+  componentDidMount()
+  {
+    (window.adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2315083194835446",
+      enable_page_level_ads: true
+ });
+  }
+
   constructor()
   {
     super();
@@ -88,7 +96,8 @@ class App extends Component {
       <Helmet>
       <meta charSet="utf-8" />
       <title>Tier 2 Sponsor List - Recently added companies</title>
-      <link rel="canonical" href="%PUBLIC_URL%/recentlyadded" />
+      <link href="%PUBLIC_URL%/recentlyadded" />
+      <meta name="description" content="UK Tier 2,5 Sponsor Register helps you to search through the companies who provide tier 2 and tier 5 sponsorship visa. This page helps in viewing all the recently added companies. You can search companies based on the name."/>
   </Helmet>
       <div className="App">
         <MUIDataTable

@@ -14,6 +14,14 @@ const columns = [
 
 class Deleted extends Component {
 
+  componentDidMount()
+  {
+    (window.adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2315083194835446",
+      enable_page_level_ads: true
+ });
+  }
+
   constructor()
   {
     super();
@@ -171,7 +179,8 @@ let countOfRows = this.state.options.count;
       <Helmet>
       <meta charSet="utf-8" />
       <title>Tier 2 Sponsor List - Deleted companies</title>
-      <link rel="canonical" href="%PUBLIC_URL%/deleted" />
+      <link  href="%PUBLIC_URL%/deleted" />
+      <meta name="description" content="This page displays all the companies which got deleted from the sponsor list in the UK. These companies cannot sponsor any more in the UK for various reasons. You can search for a company by name."/>
   </Helmet>
 <div>
 {countOfRows >= 0 ?

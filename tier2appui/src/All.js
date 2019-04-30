@@ -28,6 +28,13 @@ const columns = [
 
 class All extends Component {
 
+  componentDidMount()
+  {
+    (window.adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-2315083194835446",
+      enable_page_level_ads: true
+ });
+  }
   constructor()
   {
     super();
@@ -188,7 +195,8 @@ let countOfRows = this.state.options.count;
       <Helmet>
       <meta charSet="utf-8" />
       <title>Tier 2 Sponsor List - All companies</title>
-      <link rel="canonical" href="%PUBLIC_URL%/all" />
+      <link  href="%PUBLIC_URL%/all" />
+      <meta name="description" content="This page displays all the companies on the ascending order of company name. You can search for a company by name and also filter the list using industry."/>
   </Helmet>
 <div>
  
