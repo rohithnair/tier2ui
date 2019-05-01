@@ -1,7 +1,7 @@
 {
   "name": "tier2app",
   "version": "0.1.0",
-  "homepage":"http://uktiersponsors.co.uk",
+  "homepage":"https://uktiersponsors.co.uk",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",

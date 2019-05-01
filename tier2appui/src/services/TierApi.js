@@ -8,8 +8,6 @@ class TierApi
               return await axiosCaller.post('tierDataRecent/Companies');
     }
 
-    
-
     async GetTier2DeletedCount()
     {
               return await axiosCaller.get('tierDataDeleted/Count');
@@ -21,12 +19,13 @@ class TierApi
     }
 
 
-    async GetTier2Deleted(pageNumber,rowsPerPage,searchText =null)
+    async GetTier2Deleted(pageNumber,rowsPerPage,industry,searchText)
     {
            let params = {
-PageNumber: pageNumber,
-RowsPerPage : rowsPerPage,
-Text:searchText
+                    PageNumber: pageNumber,
+                    RowsPerPage : rowsPerPage,
+                    Text:searchText,
+                    Industry:industry   
            };
               return await axiosCaller.post('tierDataDeleted/Companies',params,{
                 headers: {
@@ -36,19 +35,18 @@ Text:searchText
 
 }
 
-async GetTier2All(pageNumber,rowsPerPage,searchText =null)
+async GetTier2All(pageNumber,rowsPerPage,industry,searchText)
 {
-       let params = {
-PageNumber: pageNumber,
-RowsPerPage : rowsPerPage,
-Text:searchText
-       };
+  let params = {
+                PageNumber: pageNumber,
+                RowsPerPage : rowsPerPage,
+                Text:searchText,
+                Industry:industry
+               };
           return await axiosCaller.post('tierData/Companies',params,{
             headers: {
                 'Content-Type': 'application/json',
             }});
-
-
 }
 }
 export default TierApi;

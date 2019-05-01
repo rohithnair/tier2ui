@@ -16,10 +16,9 @@ class Deleted extends Component {
 
   componentDidMount()
   {
-    (window.adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-2315083194835446",
-      enable_page_level_ads: true
- });
+ 
+   this.setInitialData();
+   
   }
 
   constructor()
@@ -53,7 +52,7 @@ class Deleted extends Component {
   {
     this.getDeletedCount().then((result) => {
   
-        this.getDeleted(1,this.state.options.rowsPerPage).then((companyResults) =>{
+        this.getDeleted(0,this.state.options.rowsPerPage).then((companyResults) =>{
 
             this.setState(prevState => ({
                 options: {
@@ -86,11 +85,7 @@ class Deleted extends Component {
       });
   }
  
-  componentDidMount()
-  {
-this.setInitialData();
-   
-  }
+  
 
 
   async getDeletedCount()
@@ -99,21 +94,21 @@ this.setInitialData();
    return api.GetTier2DeletedCount();
   }
 
-  async getDeleted(pageNumber,rowsPerPage,searchText)
+  async getDeleted(pageNumber,rowsPerPage,industry,searchText)
   {
    let api = new TierApi();
-   return api.GetTier2Deleted(pageNumber,rowsPerPage,searchText);
+   return api.GetTier2Deleted(pageNumber,rowsPerPage,industry,searchText);
   }
 
-  changePage(searchCompany,page,rowsPerPage) {
-    this.getDeleted(page,rowsPerPage,searchCompany).then((result) => {
+  changePage(industry,searchText,page,rowsPerPage) {
+    this.getDeleted(page,rowsPerPage,industry,searchText).then((result) => {
     
         this.setState({data:result.data.companies});
       });
   }
 
-  changePageForRows(searchCompany,page,changedRowsPerPage) {
-    this.getDeleted(page,changedRowsPerPage,searchCompany).then((result) => {
+  changePageForRows(industry,searchText,page,changedRowsPerPage) {
+    this.getDeleted(page,changedRowsPerPage,industry,searchText).then((result) => {
     
       this.setState(prevState => ({
         options: {
@@ -129,9 +124,9 @@ this.setInitialData();
 
 
 
-  searchPage(searchCompany,page,rowsPerPage)
+  searchPage(industry,searchText,page,rowsPerPage)
   {
-    this.getDeleted(page,rowsPerPage,searchCompany).then((result) => {
+    this.getDeleted(page,rowsPerPage,industry,searchText).then((result) => {
     
         this.setState(prevState => ({
             options: {
@@ -149,21 +144,25 @@ this.setInitialData();
     switch (action) {
        
       case 'changeRowsPerPage':
-      this.changePageForRows(tableState.searchText,tableState.page,tableState.rowsPerPage);
+      this.changePageForRows(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
       window.scrollTo(0, 0);
-       break;
+      break;
 
-        case 'changePage':
-         this.changePage(tableState.searchText,tableState.page,tableState.rowsPerPage);
+     case 'changePage':
+         this.changePage(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
          window.scrollTo(0, 0);
           break;
-        case 'search':
-        if(tableState.searchText === null || tableState.searchText.trim().length === 0)
-        {
-            this.setInitialData();
-        }
-        else  if(tableState.searchText && tableState.searchText.length >3)
-          this.searchPage(tableState.searchText,tableState.page,tableState.rowsPerPage);
+
+     case 'search':
+
+     if(tableState.searchText === null || tableState.searchText.trim().length === 0)
+     this.searchPage(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
+     if(tableState.searchText && tableState.searchText.trim().length >3)
+     this.searchPage(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
+     break;
+
+     case 'filterChange':
+          this.searchPage(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
           window.scrollTo(0, 0);
            break;
           default:

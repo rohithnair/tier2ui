@@ -31,7 +31,6 @@ const styles = {
 
 function Header(props) {
   const { classes ,history} = props;
-  console.log(history);
    
   return (
     <div className={classes.root}>

@@ -26,10 +26,14 @@ class App extends Component {
 
   componentDidMount()
   {
-    (window.adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-2315083194835446",
-      enable_page_level_ads: true
- });
+ 
+  this.getTierData().then((result) => {
+    
+    this.setState({data:result.data});
+  }).catch(()=>{
+
+    this.setState({data:[],options:this.options});
+  });
   }
 
   constructor()
@@ -52,16 +56,7 @@ class App extends Component {
       };
       this.state = {data: [],options:this.options};
   }
-  componentDidMount()
-  {
-    this.getTierData().then((result) => {
-  
-      this.setState({data:result.data});
-    }).catch(()=>{
-
-      this.setState({data:[],options:this.options});
-    });
-  }
+ 
 
   async getTierData()
   {

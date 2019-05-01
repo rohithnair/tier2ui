@@ -30,10 +30,8 @@ class All extends Component {
 
   componentDidMount()
   {
-    (window.adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-2315083194835446",
-      enable_page_level_ads: true
- });
+    
+    this.setInitialData();
   }
   constructor()
   {
@@ -46,7 +44,7 @@ class All extends Component {
     this.options ={
         serverSide:true,
         selectableRows: false, 
-        search: false,
+        search: true,
         print: false,
         download: false,
         rowsPerPage:10,
@@ -65,7 +63,7 @@ class All extends Component {
   {
     this.getAllCount().then((result) => {
   
-        this.getAll(1,this.state.options.rowsPerPage).then((companyResults) =>{
+        this.getAll(0,this.state.options.rowsPerPage).then((companyResults) =>{
 
            
             this.setState(prevState => ({
@@ -100,34 +98,27 @@ class All extends Component {
    
   }
  
-  componentDidMount()
-  {
-this.setInitialData();
-
-  }
-
-
   async getAllCount()
   {
    let api = new TierApi();
    return api.GetTier2AllCount();
   }
 
-  async getAll(pageNumber,rowsPerPage,searchText)
+  async getAll(pageNumber,rowsPerPage,industry,searchText)
   {
    let api = new TierApi();
-   return api.GetTier2All(pageNumber,rowsPerPage,searchText);
+   return api.GetTier2All(pageNumber,rowsPerPage,industry,searchText);
   }
 
-  changePage(page,rowsPerPage,industry) {
-    this.getAll(page,rowsPerPage,industry).then((result) => {
+  changePage(page,rowsPerPage,industry,searchText) {
+    this.getAll(page,rowsPerPage,industry,searchText).then((result) => {
     
         this.setState({data:result.data.companies});
       });
   }
 
-  changePageForRows(page,changedRowsPerPage,industry) {
-    this.getAll(page,changedRowsPerPage,industry).then((result) => {
+  changePageForRows(page,changedRowsPerPage,industry,searchText) {
+    this.getAll(page,changedRowsPerPage,industry,searchText).then((result) => {
     
       this.setState(prevState => ({
         options: {
@@ -140,9 +131,9 @@ this.setInitialData();
       });
   }
 
-  searchPage(filterText,page,rowsPerPage)
+  searchPage(page,rowsPerPage,filterText,searchText)
   {
-    this.getAll(page,rowsPerPage,filterText).then((result) => {
+    this.getAll(page,rowsPerPage,filterText,searchText).then((result) => {
     
         this.setState(prevState => ({
             options: {
@@ -158,29 +149,24 @@ this.setInitialData();
 
   onTableChange (action, tableState)  {
     switch (action) {
-       
-        case 'filterChange':
-        if(tableState.filterList && tableState.filterList[2] && (tableState.filterList[2][0] === null || tableState.filterList[2][0] ===undefined ))
-        {
-            this.setInitialData();
+      case 'search':
+      if(tableState.searchText === null || tableState.searchText.trim().length === 0)
+      this.searchPage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
+      if(tableState.searchText && tableState.searchText.trim().length >3)
+      this.searchPage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
+      window.scrollTo(0, 0);
+      break;
+      case 'filterChange':
+            this.searchPage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
             window.scrollTo(0, 0);
-        }
-        else
-        {
-           this.searchPage(tableState.filterList[2][0],tableState.page,tableState.rowsPerPage);
-           window.scrollTo(0, 0);
-        }
-        break;
-
+            break;
         case 'changePage':
-         this.changePage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0]);
-         window.scrollTo(0, 0);
-          break;
-
-          case 'changeRowsPerPage':
-          this.changePageForRows(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0]);
-          window.scrollTo(0, 0);
-          
+            this.changePage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
+            window.scrollTo(0, 0);
+            break;
+        case 'changeRowsPerPage':
+           this.changePageForRows(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
+           window.scrollTo(0, 0);
            break;
           default:
           break;

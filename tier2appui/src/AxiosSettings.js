@@ -1,5 +1,5 @@
 
 import axios from 'axios';
 export const axiosCaller = axios.create({
-    baseURL: 'tierApi/api'
+    baseURL: 'http://uktiersponsors.local/tierApi/api'
   });

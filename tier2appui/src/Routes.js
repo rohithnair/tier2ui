@@ -1,4 +1,4 @@
-import { Route } from 'react-router'
+import { Switch,Route } from 'react-router'
 import React, { Component } from 'react';
 import App from "./App";
 import Layout from "./Layout";
@@ -8,13 +8,18 @@ import All from './All';
 class Routes extends Component {
   render() {
     return (
+ 
         <BrowserRouter>
+        <Switch>
         <Route exact path="/" render={matchProps => <Layout><App {...matchProps} /></Layout>} >
         </Route>
         <Route exact path="/deleted" render={matchProps => <Layout><Deleted {...matchProps} /></Layout>} >
         </Route>
         <Route exact path="/all" render={matchProps => <Layout><All {...matchProps} /></Layout>} >
         </Route>
+        <Route  render={matchProps => <Layout><App {...matchProps} /></Layout>} >
+        </Route>
+        </Switch>
       </BrowserRouter>
     );
   }
