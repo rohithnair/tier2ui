@@ -1,38 +1,165 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Table from '@material-ui/core/Table';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
+import industries from './Industries';
 const styles = theme => ({
   root: {
-    width: '100%',
+    width: '80%',
+    marginTop: theme.spacing.unit * 1,
+    overflowX: 'hidden',
+    fontSize: '0.75rem',
+    fontWeight: '500'
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+  input:{
+    fontSize: '0.75rem',
+    fontWeight: '500'
   },
+  table: {
+    minWidth: 700,
+  },
+  select:
+  {
+    marginTop:'25px'
+  },
+  button:
+  {
+    marginTop:'23px',
+  },
+  icon:{
+    marginTop:'10px',
+  },
+
+  textField:
+  {
+    fontSize: '0.75rem',
+    fontWeight: '500'
+  },
+  selectEmpty:
+  {
+    autoWidth:'false',
+    width:'200px'
+  }
 });
 
-function AdvancedSearch(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Search</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-             
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-       
+  
+ 
+
+class AdvancedSearch extends Component {
+
+  constructor(props)
+  {
+    super(props);
+    this.searchClickCallBack=props.searchClick;
+    this.filterClearClickCallBack=props.clearFilter;
+    this.classes=props.classes;
+    this.state ={company:'',town:'',industry:''};
+    this.companyChange=this.companyChange.bind(this);
+    this.industryChange=this.industryChange.bind(this);
+    this.townChange=this.townChange.bind(this);
+    this.filterClearClick=this.filterClearClick.bind(this);
+    this.searchClick=this.searchClick.bind(this);
+    this.state ={company:'',town:'',industry:''};
+  }
+
+  townChange(e)
+  {
+    this.setState({town:e.target.value});
+  }
+
+  companyChange(e)
+  {
+    this.setState({company:e.target.value});
+  }
+  industryChange(e)
+  {
+    this.setState({industry:e.target.value});
+  }
+  
+  filterClearClick()
+  {
+    this.setState({town:'',company:'',industry:''});
+    this.filterClearClickCallBack();
+  }
+  searchClick()
+  {
+    this.searchClickCallBack(this.state.company,this.state.town,this.state.industry);
+  }
+
+  render(){
+  return(
+    <div className={this.classes.root}>
+ 
+ <Table className={this.classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+
+            <TextField
+          id="company-search"
+          label="company"
+          type="search"
+          className={this.classes.textField}
+          margin="normal"
+          onChange={this.companyChange}
+          value={this.state.company}
+        />
+
+            </TableCell>
+            <TableCell align="right">
+                  <TextField classes={{'root':this.classes.input}}
+                id="town-search"
+                label="town"
+                type="search"
+                value={this.state.town}
+                className={this.classes.textField}
+                margin="normal"
+                onChange={this.townChange}
+              />
+            
+            </TableCell>
+            <TableCell align="right">
+            
+            <Select classes={{'selectMenu':this.classes.select,'icon':this.classes.icon}}
+            displayEmpty
+            name="industry" value={this.state.industry}
+            className={this.classes.selectEmpty}
+            onChange={this.industryChange}
+          >
+            <MenuItem value="">
+               All industries 
+            </MenuItem>
+            {industries.map((item,index)=>
+            <MenuItem key={index} value={item.CategoryName}>{item.CategoryName}</MenuItem>
+            )}
+          </Select>
+            
+            </TableCell>
+            <TableCell align="right">
+            <Button variant="contained" color="primary" className={this.classes.button} onClick={this.searchClick}>
+              Search
+            </Button>
+            </TableCell>
+
+ 
+            <TableCell align="right">
+            <Button variant="contained" color="secondary" className={this.classes.button} onClick={this.filterClearClick}>
+              Clear
+            </Button>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        </Table>
+ 
     </div>
   );
+}
 }
 
  

@@ -19,12 +19,13 @@ class TierApi
     }
 
 
-    async GetTier2Deleted(pageNumber,rowsPerPage,industry,searchText)
+    async GetTier2Deleted(pageNumber,rowsPerPage,company,town,industry)
     {
            let params = {
                     PageNumber: pageNumber,
                     RowsPerPage : rowsPerPage,
-                    Text:searchText,
+                    Company:company,
+                    Town:town,
                     Industry:industry   
            };
               return await axiosCaller.post('tierDataDeleted/Companies',params,{
@@ -35,13 +36,14 @@ class TierApi
 
 }
 
-async GetTier2All(pageNumber,rowsPerPage,industry,searchText)
+async GetTier2All(pageNumber,rowsPerPage,company,town,industry)
 {
   let params = {
                 PageNumber: pageNumber,
                 RowsPerPage : rowsPerPage,
-                Text:searchText,
-                Industry:industry
+                Company:company,
+                Town:town,
+                Industry:industry  
                };
           return await axiosCaller.post('tierData/Companies',params,{
             headers: {

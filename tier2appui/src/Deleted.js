@@ -1,59 +1,88 @@
 import React, { Component } from 'react';
 import MUIDataTable from "mui-datatables";
 import TierApi from './services/TierApi';
+import industries from './Industries';
 import {Helmet} from "react-helmet";
+import AdvancedSearch from './AdvancedSearch';
+
 
 const columns = [
-  {name:"organisationName",label:'Company', options: {searchable:true}},
-  {name:"town",label:'Town'},
-  {name:"industry",label:'Industry'},
-  {name:"mainTier",label:'Main Tier'},
-  {name:"subTier",label:'Sub Tier'}
+  {name:"organisationName",label:'Company',options:{ filter: false}},
+  {name:"town",label:'Town',options:{ filter: false}},
+  {name:"industry",label:'Industry',
+  options: {
+    filter: true,
+    filterType: 'dropdown',
+    filterOptions: industries.map((item)=> item.CategoryName)
+  }
+
+},
+  {name:"mainTier",label:'Main Tier',options:{ filter: false}},
+  {name:"subTier",label:'Sub Tier',options:{ filter: false}},
 ];
 
 
-class Deleted extends Component {
+class All extends Component {
 
   componentDidMount()
   {
- 
-   this.setInitialData();
-   
+    
+    this.setInitialData();
   }
-
   constructor()
   {
     super();
     this.changePage = this.changePage.bind(this);
+    this.changePageForRows = this.changePageForRows.bind(this);
     this.onTableChange = this.onTableChange.bind(this);
     this.searchPage = this.searchPage.bind(this);
-    this.changePageForRows = this.changePageForRows.bind(this);
     this.setInitialData = this.setInitialData.bind(this);
     this.options ={
         serverSide:true,
-        filter: false,
         selectableRows: false, 
-        search: true,
+        search: false,
         print: false,
         download: false,
+        filter:false,
         rowsPerPage:10,
         rowsPerPageOptions:[10,15,20],
+        viewColumns:false,
         sort:false,
         count :-1,
         onTableChange :this.onTableChange
         
         };
-    this.state = {data: [],options:this.options};
+    this.state = {data: [],options:this.options,company:'',town:'',industry:'',currentPage:0,rowsPerPage:10};
+    this.search =this.search.bind(this);
+    this.clear =this.clear.bind(this);
+  }
+  search(company,town,industry)
+  {
+    this.setState({
+      company,
+      town,
+      industry
+    });
+    this.searchPage(this.state.currentPage,this.state.rowsPerPage,company,town,industry);
+  }
 
-   
+  clear()
+  {
+    this.setState({
+      company:'',
+      town:'',
+      industry:''
+    });
+    this.setInitialData();
   }
 
   setInitialData()
   {
-    this.getDeletedCount().then((result) => {
+    this.getAllCount().then((result) => {
   
-        this.getDeleted(0,this.state.options.rowsPerPage).then((companyResults) =>{
+        this.getAll(0,this.state.options.rowsPerPage).then((companyResults) =>{
 
+           
             this.setState(prevState => ({
                 options: {
                     ...prevState.options,
@@ -61,54 +90,52 @@ class Deleted extends Component {
                 },
                 data:companyResults.data.companies
             }));
-        })
-        .catch(ex=>
-          {
+        }).catch(() =>{
+
             this.setState(prevState => ({
-              options: {
-                  ...prevState.options,
-                  count: 0,
-              },
-              data:[]
-          }));
-          });
+                options: {
+                    ...prevState.options,
+                    count: 0,
+                },
+                data:[]
+            }));
+        });
         
-    }).catch(ex=>
-      {
+    }).catch(() =>{
+
         this.setState(prevState => ({
-          options: {
-              ...prevState.options,
-              count: 0,
-          },
-          data:[]
-      }));
-      });
+            options: {
+                ...prevState.options,
+                count: 0,
+            },
+            data:[]
+        }));
+    });
+    
+   
   }
  
-  
-
-
-  async getDeletedCount()
+  async getAllCount()
   {
    let api = new TierApi();
    return api.GetTier2DeletedCount();
   }
 
-  async getDeleted(pageNumber,rowsPerPage,industry,searchText)
+  async getAll(pageNumber,rowsPerPage,company,town,industry)
   {
    let api = new TierApi();
-   return api.GetTier2Deleted(pageNumber,rowsPerPage,industry,searchText);
+   return api.GetTier2Deleted(pageNumber,rowsPerPage,company,town,industry);
   }
 
-  changePage(industry,searchText,page,rowsPerPage) {
-    this.getDeleted(page,rowsPerPage,industry,searchText).then((result) => {
+  changePage(page,rowsPerPage) {
+    this.getAll(page,rowsPerPage,this.state.company,this.state.town,this.state.industry).then((result) => {
     
         this.setState({data:result.data.companies});
       });
   }
 
-  changePageForRows(industry,searchText,page,changedRowsPerPage) {
-    this.getDeleted(page,changedRowsPerPage,industry,searchText).then((result) => {
+  changePageForRows(page,changedRowsPerPage) {
+    this.getAll(page,changedRowsPerPage,this.state.company,this.state.town,this.state.industry).then((result) => {
     
       this.setState(prevState => ({
         options: {
@@ -117,16 +144,13 @@ class Deleted extends Component {
         },
         data:result.data.companies
     }));
+
       });
   }
 
-
-
-
-
-  searchPage(industry,searchText,page,rowsPerPage)
+  searchPage(page,rowsPerPage,company,town,industry)
   {
-    this.getDeleted(page,rowsPerPage,industry,searchText).then((result) => {
+    this.getAll(page,rowsPerPage,company,town,industry).then((result) => {
     
         this.setState(prevState => ({
             options: {
@@ -141,29 +165,17 @@ class Deleted extends Component {
 
 
   onTableChange (action, tableState)  {
+
     switch (action) {
-       
-      case 'changeRowsPerPage':
-      this.changePageForRows(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
-      window.scrollTo(0, 0);
-      break;
-
-     case 'changePage':
-         this.changePage(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
-         window.scrollTo(0, 0);
-          break;
-
-     case 'search':
-
-     if(tableState.searchText === null || tableState.searchText.trim().length === 0)
-     this.searchPage(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
-     if(tableState.searchText && tableState.searchText.trim().length >3)
-     this.searchPage(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
-     break;
-
-     case 'filterChange':
-          this.searchPage(tableState.filterList[2][0],tableState.searchText,tableState.page,tableState.rowsPerPage);
-          window.scrollTo(0, 0);
+        case 'changePage':
+        this.setState({currentPage:tableState.page,rowsPerPage:tableState.rowsPerPage});
+            this.changePage(tableState.page,tableState.rowsPerPage);
+            window.scrollTo(0, 0);
+            break;
+        case 'changeRowsPerPage':
+        this.setState({currentPage:tableState.page,rowsPerPage:tableState.rowsPerPage});
+           this.changePageForRows(tableState.page,tableState.rowsPerPage);
+           window.scrollTo(0, 0);
            break;
           default:
           break;
@@ -174,14 +186,15 @@ class Deleted extends Component {
 
 let countOfRows = this.state.options.count;
     return (
-      <React.Fragment>
-      <Helmet>
+ <React.Fragment>
+       <Helmet>
       <meta charSet="utf-8" />
       <title>Tier 2 Sponsor List - Deleted companies</title>
       <link  href="%PUBLIC_URL%/deleted" />
       <meta name="description" content="This page displays all the companies which got deleted from the sponsor list in the UK. These companies cannot sponsor any more in the UK for various reasons. You can search for a company by name."/>
   </Helmet>
 <div>
+ <AdvancedSearch  searchClick={this.search} clearFilter={this.clear}/>
 {countOfRows >= 0 ?
 <div className="App">
         <MUIDataTable
@@ -189,10 +202,11 @@ let countOfRows = this.state.options.count;
   data ={this.state.data}
   options ={this.state.options}
 />
-      </div> : null }</div> </React.Fragment>
+      </div> : null }</div>
+      </React.Fragment>
     );    
   }
 
 }
 
-export default Deleted;
+export default All;

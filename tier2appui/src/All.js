@@ -46,19 +46,40 @@ class All extends Component {
     this.options ={
         serverSide:true,
         selectableRows: false, 
-        search: true,
+        search: false,
         print: false,
         download: false,
+        filter:false,
         rowsPerPage:10,
         rowsPerPageOptions:[10,15,20],
+        viewColumns:false,
         sort:false,
         count :-1,
         onTableChange :this.onTableChange
         
         };
-    this.state = {data: [],options:this.options};
+    this.state = {data: [],options:this.options,company:'',town:'',industry:'',currentPage:0,rowsPerPage:10};
+    this.search =this.search.bind(this);
+    this.clear =this.clear.bind(this);
+  }
+  search(company,town,industry)
+  {
+    this.setState({
+      company,
+      town,
+      industry
+    });
+    this.searchPage(this.state.currentPage,this.state.rowsPerPage,company,town,industry);
+  }
 
-   
+  clear()
+  {
+    this.setState({
+      company:'',
+      town:'',
+      industry:''
+    });
+    this.setInitialData();
   }
 
   setInitialData()
@@ -106,21 +127,21 @@ class All extends Component {
    return api.GetTier2AllCount();
   }
 
-  async getAll(pageNumber,rowsPerPage,industry,searchText)
+  async getAll(pageNumber,rowsPerPage,company,town,industry)
   {
    let api = new TierApi();
-   return api.GetTier2All(pageNumber,rowsPerPage,industry,searchText);
+   return api.GetTier2All(pageNumber,rowsPerPage,company,town,industry);
   }
 
-  changePage(page,rowsPerPage,industry,searchText) {
-    this.getAll(page,rowsPerPage,industry,searchText).then((result) => {
+  changePage(page,rowsPerPage) {
+    this.getAll(page,rowsPerPage,this.state.company,this.state.town,this.state.industry).then((result) => {
     
         this.setState({data:result.data.companies});
       });
   }
 
-  changePageForRows(page,changedRowsPerPage,industry,searchText) {
-    this.getAll(page,changedRowsPerPage,industry,searchText).then((result) => {
+  changePageForRows(page,changedRowsPerPage) {
+    this.getAll(page,changedRowsPerPage,this.state.company,this.state.town,this.state.industry).then((result) => {
     
       this.setState(prevState => ({
         options: {
@@ -133,9 +154,9 @@ class All extends Component {
       });
   }
 
-  searchPage(page,rowsPerPage,filterText,searchText)
+  searchPage(page,rowsPerPage,company,town,industry)
   {
-    this.getAll(page,rowsPerPage,filterText,searchText).then((result) => {
+    this.getAll(page,rowsPerPage,company,town,industry).then((result) => {
     
         this.setState(prevState => ({
             options: {
@@ -150,24 +171,16 @@ class All extends Component {
 
 
   onTableChange (action, tableState)  {
+
     switch (action) {
-      case 'search':
-      if(tableState.searchText === null || tableState.searchText.trim().length === 0)
-      this.searchPage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
-      if(tableState.searchText && tableState.searchText.trim().length >3)
-      this.searchPage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
-      window.scrollTo(0, 0);
-      break;
-      case 'filterChange':
-            this.searchPage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
-            window.scrollTo(0, 0);
-            break;
         case 'changePage':
-            this.changePage(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
+        this.setState({currentPage:tableState.page,rowsPerPage:tableState.rowsPerPage});
+            this.changePage(tableState.page,tableState.rowsPerPage);
             window.scrollTo(0, 0);
             break;
         case 'changeRowsPerPage':
-           this.changePageForRows(tableState.page,tableState.rowsPerPage,tableState.filterList[2][0],tableState.searchText);
+        this.setState({currentPage:tableState.page,rowsPerPage:tableState.rowsPerPage});
+           this.changePageForRows(tableState.page,tableState.rowsPerPage);
            window.scrollTo(0, 0);
            break;
           default:
@@ -187,7 +200,7 @@ let countOfRows = this.state.options.count;
       <meta name="description" content="This page displays all the companies on the ascending order of company name. You can search for a company by name and also filter the list using industry."/>
   </Helmet>
 <div>
- <AdvancedSearch/>
+ <AdvancedSearch  searchClick={this.search} clearFilter={this.clear}/>
 {countOfRows >= 0 ?
 <div className="App">
         <MUIDataTable

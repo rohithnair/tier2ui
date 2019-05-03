@@ -41,16 +41,19 @@ function Header(props) {
             Tier 2 Sponsors List
           </Typography>
       
-          
-          {history.location.pathname === '/' ?
-          <Button className={classes.Border} color="inherit" onClick={() => history.push('/')}>Recently added</Button>
-          :  <Button className={classes.Button} color="inherit" onClick={() => history.push('/')}>Recently added</Button>
+          {history.location.pathname === '/' || ((history.location.pathname !== '/deleted')  && 
+          (history.location.pathname !== '/recent')
+          ) ?
+          <Button className={classes.Border} color="inherit" onClick={() => history.push('/')}>All</Button>
+          :   <Button className={classes.Button} color="inherit" onClick={() => history.push('/')}>All</Button>
+             }
+
+          {history.location.pathname === '/recent' ?
+          <Button className={classes.Border} color="inherit" onClick={() => history.push('/recent')}>Recently added</Button>
+          :  <Button className={classes.Button} color="inherit" onClick={() => history.push('/recent')}>Recently added</Button>
            
            }
-             {history.location.pathname === '/all' ?
-          <Button className={classes.Border} color="inherit" onClick={() => history.push('/all')}>All</Button>
-          :   <Button className={classes.Button} color="inherit" onClick={() => history.push('/all')}>All</Button>
-             }
+        
  {history.location.pathname === '/deleted' ?
           <Button className={classes.Border} color="inherit" onClick={() => history.push('/deleted')}>Deleted companies</Button>
        : <Button className={classes.Button} color="inherit" onClick={() => history.push('/deleted')}>Deleted companies</Button>

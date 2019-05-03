@@ -11,13 +11,13 @@ class Routes extends Component {
  
         <BrowserRouter>
         <Switch>
-        <Route exact path="/" render={matchProps => <Layout><App {...matchProps} /></Layout>} >
+        <Route exact path="/" render={matchProps => <Layout><All {...matchProps} /></Layout>} >
         </Route>
         <Route exact path="/deleted" render={matchProps => <Layout><Deleted {...matchProps} /></Layout>} >
         </Route>
-        <Route exact path="/all" render={matchProps => <Layout><All {...matchProps} /></Layout>} >
+        <Route exact path="/recent" render={matchProps => <Layout><App {...matchProps} /></Layout>} >
         </Route>
-        <Route  render={matchProps => <Layout><App {...matchProps} /></Layout>} >
+        <Route  render={matchProps => <Layout><All {...matchProps} /></Layout>} >
         </Route>
         </Switch>
       </BrowserRouter>
