@@ -3,6 +3,8 @@ import MUIDataTable from "mui-datatables";
 import TierApi from './services/TierApi';
 import industries from './Industries';
 import {Helmet} from "react-helmet";
+import AdvancedSearch from './AdvancedSearch';
+
 function renderDate(value)
 {
   var dateLocal = new Date(value);
@@ -185,7 +187,7 @@ let countOfRows = this.state.options.count;
       <meta name="description" content="This page displays all the companies on the ascending order of company name. You can search for a company by name and also filter the list using industry."/>
   </Helmet>
 <div>
- 
+ <AdvancedSearch/>
 {countOfRows >= 0 ?
 <div className="App">
         <MUIDataTable
