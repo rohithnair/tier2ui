@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import MUIDataTable from "mui-datatables";
 import TierApi from './services/TierApi';
 import {Helmet} from "react-helmet";
-
+import Website from './images/link.png'
+import Youtube from './images/youtube.png'
+import Twitter from './images/twitter.png'
+import Facebook from './images/facebook.png'
+import LinkedIn from './images/linkedin.png'
 
 function renderDate(value)
 {
@@ -12,6 +16,8 @@ function renderDate(value)
 
 const columns = [
   {name:"organisationName",label:'Company'},
+  {name:"website",label:'Website',options:{ filter: false,customBodyRender: renderWebsite}},
+  {name:"socialWebsite",label:'Social website',options:{ customBodyRender: renderSocialWebsite}},
   {name:"town",label:'Town'},
   {name:"industry",label:'Industry'},
   {name:"mainTier",label:'Main Tier'},
@@ -19,6 +25,31 @@ const columns = [
   {name:"dateAdded",label:'Date Added',options: { customBodyRender: renderDate}}
 ];
 
+function renderWebsite(value,tableMeta)
+{
+  if(tableMeta.rowData !==undefined)
+  if(value !==undefined)
+  return(
+   <div>
+    {value.length > 0 ? <a href={value} target="_blank" rel="nofollow noopener noreferrer"> <img src={Website} alt={value}/> </a> :null }
+    </div>);
+    
+}
+
+function renderSocialWebsite(value,tableMeta)
+{
+  if(tableMeta.rowData !==undefined)
+  if(value !==undefined)
+  if(tableMeta.rowData[2] !== undefined)
+  return(
+   <div>
+    {tableMeta.rowData[2].indexOf("twitter") >0?<a href={tableMeta.rowData[2]} target="_blank" rel="nofollow noopener noreferrer"> <img src={Twitter} alt={tableMeta.rowData[2]}/> </a>:null}
+    {tableMeta.rowData[2].indexOf("facebook") >0?<a href={tableMeta.rowData[2]} target="_blank" rel="nofollow noopener noreferrer"> <img src={Facebook} alt={tableMeta.rowData[2]}/> </a>:null}
+    {tableMeta.rowData[2].indexOf("linkedin") >0?<a href={tableMeta.rowData[2]} target="_blank" rel="nofollow noopener noreferrer"> <img src={LinkedIn} alt={tableMeta.rowData[2]}/> </a>:null}
+    {tableMeta.rowData[2].indexOf("youtube") >0?<a href={tableMeta.rowData[2]} target="_blank" rel="nofollow noopener noreferrer"> <img src={Youtube} alt={tableMeta.rowData[2]}/> </a>:null}
+    </div>);
+   
+}
 
 
 
