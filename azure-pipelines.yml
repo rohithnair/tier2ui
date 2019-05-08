@@ -9,8 +9,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-workingDirectory:
-  -tier2appui
 
 steps:
 - task: NodeTool@0
@@ -19,6 +17,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+   workingDirectory:tier2appui
     npm install
     npm run build
   displayName: 'npm install and build'
