@@ -9,6 +9,8 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+workingDirectory:tier2appui
+
 steps:
 - task: NodeTool@0
   inputs:
