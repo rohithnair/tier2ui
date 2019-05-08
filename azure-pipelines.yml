@@ -17,6 +17,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd tier2appui
     npm install
     npm run build
   displayName: 'npm install and build'
