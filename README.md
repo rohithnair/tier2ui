@@ -1,0 +1,1 @@
+[![Build Status](https://dev.azure.com/rrohithr/UKTiersponsors%20webapp/_apis/build/status/rohithnair.tier2ui?branchName=master)](https://dev.azure.com/rrohithr/UKTiersponsors%20webapp/_build/latest?definitionId=1&branchName=master)
