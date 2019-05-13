@@ -4,7 +4,6 @@ import Footer from './Footer';
 import { withStyles } from '@material-ui/core/styles';
 const styles = {
   root: {
-    flexGrow: 1,
   },
 };
 class Layout extends Component {

@@ -3,17 +3,12 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Table from '@material-ui/core/Table';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import industries from './Industries';
 const styles = theme => ({
   root: {
-    width: '80%',
     marginTop: theme.spacing.unit * 1,
-    overflowX: 'hidden',
     fontSize: '0.75rem',
     fontWeight: '500'
   },
@@ -22,7 +17,6 @@ const styles = theme => ({
     fontWeight: '500'
   },
   table: {
-    minWidth: 700,
   },
   select:
   {
@@ -87,21 +81,23 @@ class AdvancedSearch extends Component {
     this.setState({town:'',company:'',industry:''});
     this.filterClearClickCallBack();
   }
-  searchClick()
+  searchClick(e)
   {
+    e.preventDefault();
     this.searchClickCallBack(this.state.company,this.state.town,this.state.industry);
   }
 
   render(){
   return(
     <div className={this.classes.root}>
- 
- <Table className={this.classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>
+ <form  onSubmit={this.searchClick}>
 
-            <TextField
+ <Grid container  spacing={8}
+  direction="row"
+  justify="flex-start"
+  alignItems="center">
+        <Grid item xs={3}>
+        <TextField
           id="company-search"
           label="company"
           type="search"
@@ -110,10 +106,9 @@ class AdvancedSearch extends Component {
           onChange={this.companyChange}
           value={this.state.company}
         />
-
-            </TableCell>
-            <TableCell align="right">
-                  <TextField classes={{'root':this.classes.input}}
+        </Grid>
+        <Grid item xs={3}>
+        <TextField classes={{'root':this.classes.input}}
                 id="town-search"
                 label="town"
                 type="search"
@@ -123,10 +118,9 @@ class AdvancedSearch extends Component {
                 onChange={this.townChange}
               />
             
-            </TableCell>
-            <TableCell align="right">
-            
-            <Select classes={{'selectMenu':this.classes.select,'icon':this.classes.icon}}
+        </Grid>
+        <Grid item xs={3}>
+        <Select classes={{'selectMenu':this.classes.select,'icon':this.classes.icon}}
             displayEmpty
             name="industry" value={this.state.industry}
             className={this.classes.selectEmpty}
@@ -139,24 +133,38 @@ class AdvancedSearch extends Component {
             <MenuItem key={index} value={item.CategoryName}>{item.CategoryName}</MenuItem>
             )}
           </Select>
-            
-            </TableCell>
-            <TableCell align="right">
-            <Button variant="contained" color="primary" className={this.classes.button} onClick={this.searchClick}>
+        </Grid>
+        <Grid item xs>
+        <Button type="submit" variant="contained" color="primary" className={this.classes.button} onClick={this.searchClick}>
               Search
             </Button>
-            </TableCell>
-
- 
-            <TableCell align="right">
-            <Button variant="contained" color="secondary" className={this.classes.button} onClick={this.filterClearClick}>
+        
+        </Grid>
+        <Grid item xs={1}>
+        <Button variant="contained" color="secondary" className={this.classes.button} onClick={this.filterClearClick}>
               Clear
             </Button>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        </Table>
+        </Grid>
+      </Grid>
+
+
+          
+
+      
+              
+          
+            
+           
+            
+       
+           
+         
+
  
+          
+        
+          
+        </form>
     </div>
   );
 }

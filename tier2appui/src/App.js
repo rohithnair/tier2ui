@@ -125,7 +125,7 @@ class App extends Component {
       <link href="%PUBLIC_URL%/recentlyadded" />
       <meta name="description" content="UK Tier 2,5 Sponsor Register helps you to search through the companies who provide tier 2 and tier 5 sponsorship visa. This page helps in viewing all the recently added companies. You can search companies based on the name."/>
   </Helmet>
-      <div className="App">
+      <div>
         <MUIDataTable
   columns={columns}
   data ={this.state.data}

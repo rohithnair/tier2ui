@@ -7,9 +7,6 @@ import { withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
  
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
  
   menuButton: {
     marginLeft: -18,

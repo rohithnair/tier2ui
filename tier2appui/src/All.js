@@ -234,7 +234,7 @@ let countOfRows = this.state.options.count;
 <div>
  <AdvancedSearch  searchClick={this.search} clearFilter={this.clear}/>
 {countOfRows >= 0 ?
-<div className="App">
+<div >
         <MUIDataTable
   columns={columns}
   data ={this.state.data}

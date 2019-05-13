@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
     color:theme.primary
   },
 
