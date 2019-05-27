@@ -22,7 +22,7 @@ const columns = [
 ];
 
 
-class All extends Component {
+class Deleted extends Component {
 
   componentDidMount()
   {
@@ -209,4 +209,4 @@ let countOfRows = this.state.options.count;
 
 }
 
-export default All;
+export default Deleted;
