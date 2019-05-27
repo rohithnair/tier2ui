@@ -28,7 +28,6 @@ const styles = {
 
 function Header(props) {
   const { classes ,history} = props;
-   
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -55,6 +54,9 @@ function Header(props) {
           <Button className={classes.Border} color="inherit" onClick={() => history.push('/deleted')}>Deleted companies</Button>
        : <Button className={classes.Button} color="inherit" onClick={() => history.push('/deleted')}>Deleted companies</Button>
             } 
+
+<Button className={classes.Button} color="inherit" href="https://github.com/rohithnair/tier2ui" target="_blank" rel="nofollow noopener noreferrer">Source Code</Button>
+          
        </Toolbar>
       </AppBar>
     </div>
