@@ -27,8 +27,8 @@ const columns = [
 
 function renderWebsite(value,tableMeta)
 {
-  if(tableMeta.rowData !==undefined)
-  if(value !==undefined)
+  if(tableMeta.rowData !==undefined && tableMeta.rowData !==null)
+  if(value !==undefined && value !==null)
   return(
    <div>
     {value.length > 0 ? <a href={value} target="_blank" rel="nofollow noopener noreferrer"> <img src={Website} alt={value}/> </a> :null }
@@ -38,9 +38,9 @@ function renderWebsite(value,tableMeta)
 
 function renderSocialWebsite(value,tableMeta)
 {
-  if(tableMeta.rowData !==undefined)
-  if(value !==undefined)
-  if(tableMeta.rowData[2] !== undefined)
+  if(tableMeta.rowData !==undefined && tableMeta.rowData !==null)
+  if(value !==undefined && value !==null)
+  if(tableMeta.rowData[2] !== undefined && tableMeta.rowData[2] !== null )
   return(
    <div>
     {tableMeta.rowData[2].indexOf("twitter") >0?<a href={tableMeta.rowData[2]} target="_blank" rel="nofollow noopener noreferrer"> <img src={Twitter} alt={tableMeta.rowData[2]}/> </a>:null}
