@@ -1,13 +1,13 @@
 {
   "name": "tier2app",
   "version": "0.1.0",
-  "homepage":"https://uktiersponsors.co.uk",
+  "homepage": "https://uktiersponsors.co.uk",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
-    "mui-datatables": "^2.0.0-beta.59",
+    "mui-datatables": "^2.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",

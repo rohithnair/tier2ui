@@ -40,7 +40,7 @@ class App extends Component {
     this.options ={
       serverSide:false,
       filter: false,
-      selectableRows: false, 
+      selectableRows: 'none', 
       search: true,
       print: false,
       download: false,

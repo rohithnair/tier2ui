@@ -13,7 +13,7 @@ const columns = [
   options: {
     filter: true,
     filterType: 'dropdown',
-    filterOptions: industries.map((item)=> item.CategoryName)
+    filterOptions: { names:industries.map((item)=> item.CategoryName) }
   }
 
 },
@@ -39,7 +39,7 @@ class Deleted extends Component {
     this.setInitialData = this.setInitialData.bind(this);
     this.options ={
         serverSide:true,
-        selectableRows: false, 
+        selectableRows: 'none', 
         search: false,
         print: false,
         download: false,
