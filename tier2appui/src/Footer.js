@@ -35,7 +35,7 @@ function Footer(props) {
       <React.Fragment>
     <AppBar position="relative" color="primary" className={classes.appBar}>
     <Toolbar className={classes.toolbar}>
-                © UKTierSponsors  2019. Disclaimer : Data extracted from&nbsp;&nbsp;
+                © UKTierSponsors  2020. Disclaimer : Data extracted from&nbsp;&nbsp;
 
                 <Link className={classes.link}   color="inherit"
        href="http://www.ukba.homeoffice.gov.uk/sitecontent/documents/employersandsponsors/pointsbasedsystem/pbsregisterofsponsors"
@@ -43,8 +43,8 @@ function Footer(props) {
     >Sponsor List</Link>&nbsp;&nbsp;of &nbsp;
     <Link className={classes.link} color="inherit"
       href="http://www.ukba.homeoffice.gov.uk/" target="_blank" rel="noopener noreferrer" 
-    >UKBA
-  </Link>
+    >UKBA.
+  </Link>This website is not affiliated to government.
   
 </Toolbar>
 </AppBar>

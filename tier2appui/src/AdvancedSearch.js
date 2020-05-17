@@ -26,6 +26,11 @@ const styles = theme => ({
   {
     marginTop:'23px',
   },
+  clearButton:
+  {
+    marginTop:'23px',
+    marginLeft:'10px',
+  },
   icon:{
     marginTop:'10px',
   },
@@ -140,8 +145,8 @@ class AdvancedSearch extends Component {
             </Button>
         
         </Grid>
-        <Grid item xs={1}>
-        <Button variant="contained" color="secondary" className={this.classes.button} onClick={this.filterClearClick}>
+        <Grid item>
+        <Button variant="contained" color="secondary" className={this.classes.clearButton} onClick={this.filterClearClick}>
               Clear
             </Button>
         </Grid>

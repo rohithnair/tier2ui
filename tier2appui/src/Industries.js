@@ -5,16 +5,48 @@ const industries =
           "CategoryName": "Administrative and support"
         },
         {
+          "RowId": 1010,
+          "CategoryName": "Advertising"
+        },
+        {
           "RowId": 1,
           "CategoryName": "Agriculture"
+        },
+        {
+          "RowId": 1008,
+          "CategoryName": "Architecture"
         },
         {
           "RowId": 18,
           "CategoryName": "Arts ,Entertainment"
         },
         {
+          "RowId": 1016,
+          "CategoryName": "Betting"
+        },
+        {
+          "RowId": 1017,
+          "CategoryName": "Call Center"
+        },
+        {
+          "RowId": 1020,
+          "CategoryName": "Care Home"
+        },
+        {
+          "RowId": 1000,
+          "CategoryName": "Civil Engineering"
+        },
+        {
+          "RowId": 1006,
+          "CategoryName": "Computer Programming"
+        },
+        {
           "RowId": 6,
           "CategoryName": "Construction"
+        },
+        {
+          "RowId": 1019,
+          "CategoryName": "Dental"
         },
         {
           "RowId": 16,
@@ -41,12 +73,20 @@ const industries =
           "CategoryName": "IT,Telecommunication"
         },
         {
+          "RowId": 1007,
+          "CategoryName": "Legal"
+        },
+        {
           "RowId": 13,
           "CategoryName": "Management"
         },
         {
           "RowId": 3,
           "CategoryName": "Manufacturing"
+        },
+        {
+          "RowId": 1018,
+          "CategoryName": "Medical"
         },
         {
           "RowId": 2,
@@ -61,16 +101,60 @@ const industries =
           "CategoryName": "Public administration, Government"
         },
         {
+          "RowId": 1001,
+          "CategoryName": "Publishing"
+        },
+        {
+          "RowId": 1005,
+          "CategoryName": "Radio and Television"
+        },
+        {
           "RowId": 12,
           "CategoryName": "Real estate"
+        },
+        {
+          "RowId": 1013,
+          "CategoryName": "Recruitment"
+        },
+        {
+          "RowId": 1021,
+          "CategoryName": "Religious"
+        },
+        {
+          "RowId": 1012,
+          "CategoryName": "Rental"
+        },
+        {
+          "RowId": 1009,
+          "CategoryName": "Scientific Research"
+        },
+        {
+          "RowId": 1015,
+          "CategoryName": "Security"
         },
         {
           "RowId": 17,
           "CategoryName": "Social Work"
         },
         {
+          "RowId": 1003,
+          "CategoryName": "Software Publishing"
+        },
+        {
           "RowId": 8,
           "CategoryName": "Transportation & Storage"
+        },
+        {
+          "RowId": 1014,
+          "CategoryName": "Travel and Tourism"
+        },
+        {
+          "RowId": 1011,
+          "CategoryName": "Vetenary"
+        },
+        {
+          "RowId": 1004,
+          "CategoryName": "Video or Music Production"
         },
         {
           "RowId": 5,
