@@ -36,11 +36,12 @@ Nitty Gritty
    
 Techincal details
 -------------------------------------------
-- Webiste front end   -  Ported from ASP.NET MVC 4 to ReactJS with Web API 2.0 to serve data from SQL 2016.
+- Webiste front end   -  Ported from ASP.NET MVC 4 to ReactJS with Web API 2.0 and aspnet core hosting to serve data from SQL 2016.
 - Pdf extractor service  - .NET 4.5 , SQL 2016
 - Industry finder service - .NET 4.5, SQL 2016.
 - Website extractor service - .NET Core, Mongo DB
 - Website inserter service - .NET Core, Mongo DB, SQL 2016.
+- Csv generator service - .NET 4.5, SQL 2016.
 
  >The entire website is hosted at aspnethosting VPS.
 
