@@ -31,6 +31,8 @@ Nitty Gritty
  6 Another service, will fetch the first common url and social website link from Mongo DB and puts it back to the SQL database , which contains the tier 2 companies as described in step(b) , so as to avoid multiple db calls and data consolidation.
  
    This has the added advantage , that if I want to change the algorithm for website finding after analysing existing mongo db search set, i can reinsert it back to the main database easily.
+  
+  7 A service which will generate CSV files for All companies, recent and deleted companies and stores to Azure Blob Storage which can be downloaded from the website.
    
 Techincal details
 -------------------------------------------
