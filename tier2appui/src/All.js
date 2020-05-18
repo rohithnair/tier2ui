@@ -62,12 +62,14 @@ class All extends Component {
   }
   search(company,town,industry)
   {
+    let currentPage=0;
     this.setState({
       company,
       town,
-      industry
+      industry,
+      currentPage
     });
-    this.searchPage(this.state.currentPage,this.state.rowsPerPage,company,town,industry);
+    this.searchPage(0,this.state.rowsPerPage,company,town,industry);
   }
 
   clear()
@@ -75,7 +77,8 @@ class All extends Component {
     this.setState({
       company:'',
       town:'',
-      industry:''
+      industry:'',
+      currentPage:0
     });
     this.setInitialData();
   }
