@@ -65,7 +65,7 @@ function Header(props) {
             } 
 
 <Button className={classes.Button} color="inherit" aria-haspopup="true" onClick={handleClick}>
- Csv Download
+ Download
 </Button>
 <Menu
   anchorEl={anchorEl}
@@ -80,6 +80,10 @@ function Header(props) {
    <MenuItem onClick={handleClose}  component="a" href="https://uktiersponsors.blob.core.windows.net/excel/UkTiersponsors_Deleted.csv"  rel="nofollow noopener noreferrer"
                 >Deleted</MenuItem>
 </Menu>
+
+<Button className={classes.Button} color="inherit" href="https://amazingstories.uktiersponsors.co.uk" target="_self" rel="nofollow noopener noreferrer">Tell your story</Button>
+
+<Button className={classes.Button} color="inherit" href="https://join.slack.com/t/uktiersponsors/shared_invite/enQtNzU3NDIxNjExOTU4LTZlODFjNDMyZDlkNWE5NjY4OTE2OTc4NjZmMGM2NmE2MWVhMjdjMjMzYmQ2MzAzYzZhNDU4Zjc1OWZhZDc5ZDA" target="_blank" rel="nofollow noopener noreferrer">Slack Community</Button>
 
 <Button className={classes.Button} color="inherit" href="https://github.com/rohithnair/tier2ui" target="_blank" rel="nofollow noopener noreferrer">Source Code</Button>
           
