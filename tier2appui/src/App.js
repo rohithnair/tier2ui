@@ -45,7 +45,7 @@ class App extends Component {
       print: false,
       download: false,
       rowsPerPage:10,
-      sort:false,
+      sort:true,
       rowsPerPageOptions:[10,15,20],
       onTableChange :this.onTableChange
       };
