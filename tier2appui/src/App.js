@@ -43,8 +43,9 @@ class App extends Component {
       selectableRows: 'none', 
       search: true,
       print: false,
-      download: false,
-      rowsPerPage:10,
+      download: true,
+      viewColumns:false,
+      rowsPerPage:20,
       sort:false,
       rowsPerPageOptions:[10,15,20],
       onTableChange :this.onTableChange

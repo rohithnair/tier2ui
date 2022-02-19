@@ -12,6 +12,7 @@ const columns = [
   {name:"industry",label:'Industry',
   options: {
     filter: true,
+    download: true,
     filterType: 'dropdown',
     filterOptions: { names:industries.map((item)=> item.CategoryName) }
   }
@@ -42,9 +43,9 @@ class Deleted extends Component {
         selectableRows: 'none', 
         search: false,
         print: false,
-        download: false,
+        download: true,
         filter:false,
-        rowsPerPage:10,
+        rowsPerPage:20,
         rowsPerPageOptions:[10,15,20],
         viewColumns:false,
         sort:false,

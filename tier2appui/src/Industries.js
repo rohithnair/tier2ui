@@ -1,30 +1,30 @@
 const industries =
     [
       {
-        "RowId": 1018,
+        "RowId": 1,
         "CategoryName": "Medical"
       },
       {
-        "RowId": 1020,
+        "RowId": 2,
         "CategoryName": "Care Home"
       },
       {
-        "RowId": 10,
+        "RowId": 3,
         "CategoryName": "IT,Telecommunication"
       },
       {
-        "RowId": 1006,
+        "RowId": 4,
         "CategoryName": "Computer Programming"
       },
         {
-          "RowId": 14,
+          "RowId": 5,
           "CategoryName": "Administrative and support"
         },
         {
           "RowId": 11,
           "CategoryName": "Finance,Insurance"
         },
-        {
+             {
           "RowId": 16,
           "CategoryName": "Education"
         },
@@ -33,7 +33,7 @@ const industries =
           "CategoryName": "Advertising"
         },
         {
-          "RowId": 1,
+          "RowId": 1018,
           "CategoryName": "Agriculture"
         },
         {
@@ -68,7 +68,7 @@ const industries =
         },
    
         {
-          "RowId": 4,
+          "RowId": 1006,
           "CategoryName": "Electricity,Gas,Steam,Air"
         },
     
@@ -90,12 +90,12 @@ const industries =
           "CategoryName": "Management"
         },
         {
-          "RowId": 3,
+          "RowId": 10,
           "CategoryName": "Manufacturing"
         },
     
         {
-          "RowId": 2,
+        "RowId": 1020,
           "CategoryName": "Mining and Quarrying"
         },
         {
@@ -163,7 +163,7 @@ const industries =
           "CategoryName": "Video or Music Production"
         },
         {
-          "RowId": 5,
+          "RowId": 14,
           "CategoryName": "Water,Waste management"
         },
         {
