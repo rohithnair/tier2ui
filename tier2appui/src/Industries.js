@@ -1,8 +1,32 @@
 const industries =
     [
+      {
+        "RowId": 1018,
+        "CategoryName": "Medical"
+      },
+      {
+        "RowId": 1020,
+        "CategoryName": "Care Home"
+      },
+      {
+        "RowId": 10,
+        "CategoryName": "IT,Telecommunication"
+      },
+      {
+        "RowId": 1006,
+        "CategoryName": "Computer Programming"
+      },
         {
           "RowId": 14,
           "CategoryName": "Administrative and support"
+        },
+        {
+          "RowId": 11,
+          "CategoryName": "Finance,Insurance"
+        },
+        {
+          "RowId": 16,
+          "CategoryName": "Education"
         },
         {
           "RowId": 1010,
@@ -28,18 +52,12 @@ const industries =
           "RowId": 1017,
           "CategoryName": "Call Center"
         },
-        {
-          "RowId": 1020,
-          "CategoryName": "Care Home"
-        },
+     
         {
           "RowId": 1000,
           "CategoryName": "Civil Engineering"
         },
-        {
-          "RowId": 1006,
-          "CategoryName": "Computer Programming"
-        },
+      
         {
           "RowId": 6,
           "CategoryName": "Construction"
@@ -48,18 +66,12 @@ const industries =
           "RowId": 1019,
           "CategoryName": "Dental"
         },
-        {
-          "RowId": 16,
-          "CategoryName": "Education"
-        },
+   
         {
           "RowId": 4,
           "CategoryName": "Electricity,Gas,Steam,Air"
         },
-        {
-          "RowId": 11,
-          "CategoryName": "Finance,Insurance"
-        },
+    
         {
           "RowId": 9,
           "CategoryName": "Food & Accomodation"
@@ -68,10 +80,7 @@ const industries =
           "RowId": 20,
           "CategoryName": "Houselhold"
         },
-        {
-          "RowId": 10,
-          "CategoryName": "IT,Telecommunication"
-        },
+      
         {
           "RowId": 1007,
           "CategoryName": "Legal"
@@ -84,10 +93,7 @@ const industries =
           "RowId": 3,
           "CategoryName": "Manufacturing"
         },
-        {
-          "RowId": 1018,
-          "CategoryName": "Medical"
-        },
+    
         {
           "RowId": 2,
           "CategoryName": "Mining and Quarrying"
