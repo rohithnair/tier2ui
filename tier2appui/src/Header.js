@@ -19,7 +19,6 @@ import CodeIcon from '@material-ui/icons/Code';
 import ForumIcon from '@material-ui/icons/Forum';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
 const styles = {
  
   menuButton: {
@@ -162,6 +161,15 @@ Recently added companies
 Deleted companies
 </Typography>:<React.Fragment></React.Fragment>}
 
+<Typography variant="h6" color="inherit"   className={classes.Heading}>
+
+
+<a href="https://www.buymeacoffee.com/uktiersponsors" target='_blank' rel="noopener noreferrer" color='inherit' >
+<IconButton className={classes.menuButton} color="inherit" style={{ color: "white" }}>
+      <FavoriteIcon />
+    </IconButton>
+  </a>
+  </Typography>
        </Toolbar>
       </AppBar>
     </div>
