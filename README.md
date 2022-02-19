@@ -10,13 +10,13 @@ Sorry i haven't open sourced the entire project yet.
 Nitty Gritty
 --------------------------------
 
-1 A service which downloads pdf every day and checks whether pdf is new. If the pdf is new , the pdf is downloaded
+1 A service which downloads csv every day from government website and checks whether csv is new. If the csv is new , the csv is downloaded
 
-2 Each page of pdf is extracted and different company information is put to database. The database is SQL2016.
+2 Each page of csv is extracted and different company information is put to database. The database is SQL2016.
 
 3 This scans will delete companies from the database, if the company no longer sponsors. The deleted data is moved to a new table, so as to display it back to users.
 
-4 Another service, will fetch the company address, and NIC codes from Companies House API.
+4 Another service, will fetch the company address, and SIC codes from Companies House API.
        https://developer.companieshouse.gov.uk/api/docs/
    
    This is done to augment the existing data with the industry in which the company operates. 
@@ -36,12 +36,15 @@ Nitty Gritty
    
 Techincal details
 -------------------------------------------
-- Webiste front end   -  Ported from ASP.NET MVC 4 to ReactJS with Web API 2.0 and aspnet core hosting to serve data from SQL 2016.
-- Pdf extractor service  - .NET 4.5 , SQL 2016
-- Industry finder service - .NET 4.5, SQL 2016.
-- Website extractor service - .NET Core, Mongo DB
-- Website inserter service - .NET Core, Mongo DB, SQL 2016.
-- Csv generator service - .NET 4.5, SQL 2016.
+- Webiste front end   -   ReactJS
+- Tier 2 Web Api      -   .NET 5
+- Csv extractor service  - .NET 4.5 
+- Industry finder service - .NET 4.5
+- Website extractor service - .NET Core
+- Website inserter service - .NET Core
+- Csv file generator - .NET 4.5
+- Database - MSSQL 2016, MongoDB
+- Azure Storage - For storing csv files for download
 
  >The entire website is hosted at aspnethosting VPS.
 
