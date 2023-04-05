@@ -1,4 +1,4 @@
-const industries =
+export const industries =
     [
       {
         "RowId": 1,
