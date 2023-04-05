@@ -18,6 +18,6 @@ steps:
 
 - script: |
     cd tier2appui
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+    yarn install
+    yarn run build
+  displayName: 'yarn install and build'
