@@ -1,7 +1,6 @@
-﻿import React, { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { User } from "./User";
  
-
 type AuthContextProps = {
     isAuthenticated :boolean;
     isLoading: boolean;
