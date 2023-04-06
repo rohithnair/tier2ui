@@ -1,6 +1,6 @@
 {
   "name": "tier2app",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "homepage": "https://uktiersponsors.co.uk",
   "private": true,
   "dependencies": {
