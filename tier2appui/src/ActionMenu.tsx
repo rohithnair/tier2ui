@@ -66,7 +66,7 @@ export default function ActionMenu({ organisationId , activityFlag}:ActionMenuPr
  
         <MenuItem disabled = {activityFlag === ActivityFlag.Contacted} onClick={handleContacted}>Contacted</MenuItem>  
         <MenuItem disabled = {activityFlag === ActivityFlag.Rejected} onClick={handleRejected}>Rejected</MenuItem> 
-        <MenuItem disabled = {activityFlag === ActivityFlag.Contacted || activityFlag === ActivityFlag.Rejected } onClick={handleClear}>Remove Activity</MenuItem> 
+        <MenuItem disabled = {activityFlag !== ActivityFlag.Contacted && activityFlag !== ActivityFlag.Rejected } onClick={handleClear}>Remove Activity</MenuItem> 
       </Menu>
     </div>
   );
