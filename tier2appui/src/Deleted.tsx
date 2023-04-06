@@ -7,7 +7,7 @@ import { columnDefinitionsForDeleted } from "./ColumnDefinitions";
 import TierApi from "./TierApi";
 import { TierData } from "./TierData";
 import { TierDataTable } from "./TierDataTable";
-
+ 
 function Deleted() {
   
     const [tierDataList, setTierDataList] = useState<TierData[]>([]);
@@ -23,7 +23,7 @@ function Deleted() {
         const apiClient = new TierApi();
         const response = await apiClient.GetTier2Deleted(page, rowsPerPage, company, town, industry);
         setTierDataList(response?.data?.companies);
-        setCount(response?.data?.count);
+        setCount(response.data.count);
       }catch(e) {
         console.log(e);
       }
@@ -34,14 +34,12 @@ function Deleted() {
        setTown(town);
        setIndustry(industry);
        setCompany(company);
-       fetchAllDeletedCompanies();
       }
     
       const clear= ()=>      {
-        setTown(town);
-        setIndustry(industry);
-        setCompany(company);
-        fetchAllDeletedCompanies();
+        setTown('');
+        setIndustry('');
+        setCompany('');
       }
 
 
@@ -59,10 +57,7 @@ function Deleted() {
         .catch(console.error);
     }, [fetchAllDeletedCompanies,fetchTotalCount]);
 
-    const changePage = async () => {
-            await  fetchAllDeletedCompanies();
-          };
-
+ 
     const tableOptions: MUIDataTableOptions = {
         serverSide:true,
         selectableRows: 'none', 
@@ -83,14 +78,12 @@ function Deleted() {
             case 'changePage':
                     setRowsPerPage(tableState.rowsPerPage);
                     setPage(tableState.page);
-                    changePage();
                     window.scrollTo(0, 0);
                     break;
   
           case 'changeRowsPerPage':
                     setRowsPerPage(tableState.rowsPerPage);
                     setPage(tableState.page);
-                    changePage();
                     window.scrollTo(0, 0);
             break;
         }

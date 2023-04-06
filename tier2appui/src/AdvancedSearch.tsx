@@ -1,7 +1,7 @@
 import { Button, Grid, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import React, {  SyntheticEvent, useState } from 'react';
 import industries from './Industries';
- 
+
 type AdvancedSearchProps = {
    searchCallBack: (company: string, town: string, industry: string) => void;
    filterClearCallBack: () => void;
@@ -15,9 +15,11 @@ const AdvancedSearch  = ({ searchCallBack, filterClearCallBack }:  AdvancedSearc
   
   const filterClearClick = () =>
   {
+   
     setCompany('');
     setTown('');
     setIndustry('');
+    
     filterClearCallBack();
   };
 

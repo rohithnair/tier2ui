@@ -2,7 +2,6 @@ import { MUIDataTableOptions, MUIDataTableState } from "mui-datatables";
 import React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useSelector } from "react-redux";
 import AdvancedSearch from "./AdvancedSearch";
 import { getAllCompanies, getAllCompaniesCount, getAllCompaniesForUser } from "./AllDataThunk";
 import { useAuth } from "./AuthContext";
@@ -10,6 +9,7 @@ import { columnDefinitions, columnDefinitionsForUser } from "./ColumnDefinitions
 import { Filter } from "./Filter";
 import { RootState, useAppDispatch } from "./store";
 import { TierDataTable } from "./TierDataTable";
+import { useSelector } from "react-redux";
 
 function All() {
   
@@ -42,21 +42,20 @@ function All() {
         console.log(e);
       }
         
-      },[page, rowsPerPage, company, town, industry,isAuthenticated,dispatch]);
+      },[company,town,industry,rowsPerPage, page,isAuthenticated,dispatch]);
 
       const search =(company:string,town: string,industry: string) =>
       {
+  
        setTown(town);
        setIndustry(industry);
        setCompany(company);
-       fetchAllCompanies();
       }
     
       const clear= ()=>      {
-        setTown(town);
-        setIndustry(industry);
-        setCompany(company);
-        fetchAllCompanies();
+        setTown('');
+        setIndustry('');
+        setCompany('');
       }
 
 
@@ -76,10 +75,6 @@ function All() {
 
         .catch(console.error);
     }, [fetchAllCompanies,fetchTotalCount]);
-
-    const changePage = async () => {
-            await  fetchAllCompanies();
-          };
 
     const tableOptions: MUIDataTableOptions = {
         serverSide:true,
@@ -101,14 +96,12 @@ function All() {
             case 'changePage':
                     setRowsPerPage(tableState.rowsPerPage);
                     setPage(tableState.page);
-                    changePage();
                     window.scrollTo(0, 0);
                     break;
   
           case 'changeRowsPerPage':
                     setRowsPerPage(tableState.rowsPerPage);
                     setPage(tableState.page);
-                    changePage();
                     window.scrollTo(0, 0);
             break;
         }
