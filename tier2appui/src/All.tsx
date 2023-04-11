@@ -87,7 +87,7 @@ function All() {
         rowsPerPageOptions:[10,15,20],
         viewColumns:false,
         sort:false,
-        responsive:'standard',
+        responsive:'simple',
         count: count,
       onTableChange: (action, tableState: MUIDataTableState) => {
   
