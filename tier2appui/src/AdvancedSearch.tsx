@@ -45,11 +45,11 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
   
   return(
  <form  onSubmit={searchClick}>
-  <Grid container={true} spacing={8}
+  <Grid container={true} spacing={2}
 
    alignItems="center"
   >
-        <Grid item xs={3}>
+        <Grid item xs={2} sm={6}>
         <TextField
         sx= {{fontSize: '0.75rem',
         fontWeight: '500'}}
@@ -57,11 +57,12 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
           label="company"
           type="search"
           margin="normal"
+          variant="standard" 
           onChange={setCompanyHandler}
           value={company}
         />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}  sm={6}>
         <TextField
                 sx= {{fontSize: '0.75rem',
                 fontWeight: '500'}}
@@ -70,15 +71,17 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
                 type="search"
                 value={town}
                 margin="normal"
+                variant="standard" 
                 onChange={setTownHandler}
               />
             
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2} sm={6}>
         <Select 
             displayEmpty
-            sx={{ autoWidth:'false',
+            sx={{ autoWidth:'false', marginTop:'25px',
             width:'200px'}}
+            variant="standard" 
             name="industry" value={industry}
             onChange={setIndustryHandler}
           >
@@ -90,14 +93,12 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
             )}
           </Select>
         </Grid>
-        <Grid item xs>
+        <Grid item xs={4} sm={4}>
         <Button type="submit"  variant="contained" color="primary" onClick={searchClick} sx={{ marginTop:2}}>
               Search
             </Button>
-        
-        </Grid>
-        <Grid item>
-        <Button variant="contained" color="secondary"  onClick={filterClearClick} sx={{  marginTop:2, marginLeft:2,marginRight:2}}>
+ 
+        <Button variant="contained" color="secondary"  onClick={filterClearClick} sx={ {marginLeft:1, marginTop:2}}>
               Clear
             </Button>
         </Grid>
