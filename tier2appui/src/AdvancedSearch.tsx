@@ -45,11 +45,10 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
   
   return(
  <form  onSubmit={searchClick}>
-  <Grid container={true} spacing={2}
-
+  <Grid container={true} spacing={2} 
    alignItems="center"
   >
-        <Grid item xs={2} sm={6}>
+        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
         <TextField
         sx= {{fontSize: '0.75rem',
         fontWeight: '500'}}
@@ -62,7 +61,7 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
           value={company}
         />
         </Grid>
-        <Grid item xs={2}  sm={6}>
+        <Grid item xs={4}  sm={4} md={4} lg={4} xl={4}>
         <TextField
                 sx= {{fontSize: '0.75rem',
                 fontWeight: '500'}}
@@ -76,7 +75,7 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
               />
             
         </Grid>
-        <Grid item xs={2} sm={6}>
+        <Grid item xs={4} sm={4} md={4} lg={4} xl={4} width={.08}>
         <Select 
             displayEmpty
             sx={{ autoWidth:'false', marginTop:'25px',
@@ -93,15 +92,16 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
             )}
           </Select>
         </Grid>
-        <Grid item xs={4} sm={4}>
+        </Grid>
+        <Grid container={true} spacing={2} justifyContent='flex-end'  sx= {{marginBottom:1}}>
+          <Grid item>
         <Button type="submit"  variant="contained" color="primary" onClick={searchClick} sx={{ marginTop:2}}>
               Search
             </Button>
- 
-        <Button variant="contained" color="secondary"  onClick={filterClearClick} sx={ {marginLeft:1, marginTop:2}}>
+        <Button variant="contained" color="secondary"  onClick={filterClearClick}  sx={{ marginTop:2, marginLeft:1}}>
               Clear
             </Button>
-        </Grid>
+            </Grid>
         </Grid>
         </form>
   );
