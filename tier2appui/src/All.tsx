@@ -10,11 +10,13 @@ import { Filter } from "./Filter";
 import { RootState, useAppDispatch } from "./store";
 import { TierDataTable } from "./TierDataTable";
 import { useSelector } from "react-redux";
+import PageNumberFooter from "./PageNumberFooter";
+import { debounce } from "lodash";
 
 function All() {
   
     const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [rowsPerPage, setRowsPerPage] = useState(10)
     const [company, setCompany] = useState('');
     const [town, setTown] = useState('');
     const [industry, setIndustry] = useState('');
@@ -57,8 +59,11 @@ function All() {
         setIndustry('');
         setCompany('');
       }
-
-
+      const changePageCallback = (pageNumber: number) => {
+        setPage(pageNumber);
+        window.scrollTo({top: 0, behavior: 'smooth'});
+       }
+      
     const fetchTotalCount = useCallback(async () => {
       try {
         dispatch(getAllCompaniesCount())
@@ -89,6 +94,7 @@ function All() {
         sort:false,
         responsive:'simple',
         count: count,
+        page: page,
       onTableChange: (action, tableState: MUIDataTableState) => {
   
         switch (action) {
@@ -119,6 +125,7 @@ function All() {
         <div>
         <AdvancedSearch  searchCallBack={search} filterClearCallBack={clear}/>
           <TierDataTable options={tableOptions} columnDefinitions={isAuthenticated?columnDefinitionsForUser:columnDefinitions} data={tierDataList} />
+          <PageNumberFooter pageNumberCallBack={changePageCallback}  pageNumber={page} rowsPerPage={rowsPerPage} totalRows={count}  /> 
         </div>
       </React.Fragment>
     );
