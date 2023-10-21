@@ -5,7 +5,6 @@ const Login=() => {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-          // 👇️ redirects to an external URL
           window.location.href= baseAuthURL+'/login?returnUrl=https://uktiersponsors.co.uk/callback';
         }, 3);
     

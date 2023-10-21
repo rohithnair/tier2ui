@@ -27,14 +27,15 @@ class TierApi
     }
 
 
-    async GetTier2Deleted(pageNumber: number,rowsPerPage: number,company: string,town: string,industry: string) :  Promise<AxiosResponse<TierDataPaged>>
+    async GetTier2Deleted(pageNumber: number,rowsPerPage: number,company: string,town: string,industry: string, sortBy: number) :  Promise<AxiosResponse<TierDataPaged>>
     {
            let params = {
                     PageNumber: pageNumber,
                     RowsPerPage : rowsPerPage,
                     Company:company,
                     Town:town,
-                    Industry:industry   
+                    Industry:industry,
+                    SortBy: sortBy
            };
               return await axiosCaller.post('/tierDataDeleted/Companies',params,{
                 headers: {

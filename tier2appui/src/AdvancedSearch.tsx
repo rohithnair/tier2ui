@@ -1,7 +1,7 @@
 import { Button, Grid, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import React, {  SyntheticEvent, useState } from 'react';
 import industries from './Industries';
-
+ 
 type AdvancedSearchProps = {
    searchCallBack: (company: string, town: string, industry: string, sortBy: number) => void;
    filterClearCallBack: () => void;
@@ -12,6 +12,7 @@ const AdvancedSearch  = ({ searchCallBack, filterClearCallBack }:  AdvancedSearc
   const [company, setCompany] = useState('');
   const [town, setTown] = useState('');
   const [industry, setIndustry] = useState('');
+ 
   const [sortBy, setSortBy] = useState('0');
   const filterClearClick = () =>
   {
@@ -112,7 +113,7 @@ const setSortByHandler = (e:SelectChangeEvent<string>) =>  {
                Sort by name ascending
             </MenuItem>
             <MenuItem value="1">
-               Sort by date added descending
+             Sort by date descending
             </MenuItem>
           </Select>
         </Grid>

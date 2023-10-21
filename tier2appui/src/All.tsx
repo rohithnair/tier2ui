@@ -45,7 +45,7 @@ function All() {
         console.log(e);
       }
         
-      },[company,town,industry,rowsPerPage, sortBy, page,isAuthenticated,dispatch]);
+      },[company,town,industry,rowsPerPage, sortBy, page,isAuthenticated, dispatch]);
 
       const search =(company:string,town: string,industry: string, sortBy: number) =>
       {
