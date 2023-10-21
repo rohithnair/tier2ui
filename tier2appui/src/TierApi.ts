@@ -42,14 +42,15 @@ class TierApi
                 }});
 }
 
-async GetTier2All(pageNumber: number,rowsPerPage: number,company: string,town: string,industry: string) : Promise<AxiosResponse<TierDataPaged>>
+async GetTier2All(pageNumber: number,rowsPerPage: number,company: string,town: string,industry: string, sortBy: number) : Promise<AxiosResponse<TierDataPaged>>
 {
   let params = {
                 PageNumber: pageNumber,
                 RowsPerPage : rowsPerPage,
                 Company:company,
                 Town:town,
-                Industry:industry  
+                Industry:industry,
+                SortBy: sortBy
                };
           return await axiosCaller.post('/tierData/Companies',params,{
             headers: {
@@ -57,14 +58,15 @@ async GetTier2All(pageNumber: number,rowsPerPage: number,company: string,town: s
             }});
 }
 
-async GetTier2AllForUser(pageNumber: number,rowsPerPage: number,company: string,town: string,industry: string) : Promise<AxiosResponse<TierDataPagedForUser>>
+async GetTier2AllForUser(pageNumber: number,rowsPerPage: number,company: string,town: string,industry: string, sortBy: number) : Promise<AxiosResponse<TierDataPagedForUser>>
 {
   let params = {
                 PageNumber: pageNumber,
                 RowsPerPage : rowsPerPage,
                 Company:company,
                 Town:town,
-                Industry:industry  
+                Industry:industry,
+                SortBy: sortBy
                };
           return await axiosCallerForTierDataWithActivity.post('/tierData/companiesforuser',params,{
             headers: {

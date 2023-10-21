@@ -4,5 +4,6 @@ export type Filter = {
     town: string,
     page: number,
     rowsPerPage: number;
+    sortBy: number;
 }
  

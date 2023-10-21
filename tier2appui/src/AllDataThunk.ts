@@ -5,10 +5,10 @@ import { TierDataPaged, TierDataPagedForUser } from "./TierData";
 
 export const getAllCompanies = createAsyncThunk<TierDataPaged,Filter>(
     'tierData/all',
-    async ({page,rowsPerPage, company, town, industry}:Filter): Promise<TierDataPaged>=> 
+    async ({page,rowsPerPage, company, town, industry, sortBy }:Filter): Promise<TierDataPaged>=> 
     {
         const apiClient = new TierApi();
-        const response= await apiClient.GetTier2All(page, rowsPerPage, company, town, industry);
+        const response= await apiClient.GetTier2All(page, rowsPerPage, company, town, industry, sortBy);
        return response.data;
     }
   )
@@ -26,10 +26,10 @@ export const getAllCompanies = createAsyncThunk<TierDataPaged,Filter>(
   
 export const getAllCompaniesForUser = createAsyncThunk<TierDataPagedForUser,Filter>(
     'tierData/allForUser',
-    async ({page,rowsPerPage, company, town, industry}:Filter): Promise<TierDataPagedForUser>=> 
+    async ({page,rowsPerPage, company, town, industry, sortBy}:Filter): Promise<TierDataPagedForUser>=> 
     {
         const apiClient = new TierApi();
-        const response= await apiClient.GetTier2AllForUser(page, rowsPerPage, company, town, industry);
+        const response= await apiClient.GetTier2AllForUser(page, rowsPerPage, company, town, industry, sortBy);
        return response.data;
     }
   )
