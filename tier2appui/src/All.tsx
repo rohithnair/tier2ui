@@ -11,7 +11,7 @@ import { RootState, useAppDispatch } from "./store";
 import { TierDataTable } from "./TierDataTable";
 import { useSelector } from "react-redux";
 import PageNumberFooter from "./PageNumberFooter";
-import { debounce } from "lodash";
+  
 
 function All() {
   
@@ -20,6 +20,7 @@ function All() {
     const [company, setCompany] = useState('');
     const [town, setTown] = useState('');
     const [industry, setIndustry] = useState('');
+    const [sortBy, setSortBy] = useState(0);
     const {isAuthenticated} = useAuth();
     const dispatch = useAppDispatch();
     const tierDataList = useSelector((state: RootState) => state.tierDataAll.tierDataList);
@@ -29,7 +30,7 @@ function All() {
 
       try {
         const filter : Filter = {
-            company, industry,page, rowsPerPage ,town
+            company, industry,page, rowsPerPage ,town, sortBy
         }
         if(isAuthenticated) {
          
@@ -44,20 +45,22 @@ function All() {
         console.log(e);
       }
         
-      },[company,town,industry,rowsPerPage, page,isAuthenticated,dispatch]);
+      },[company,town,industry,rowsPerPage, sortBy, page,isAuthenticated, dispatch]);
 
-      const search =(company:string,town: string,industry: string) =>
+      const search =(company:string,town: string,industry: string, sortBy: number) =>
       {
   
        setTown(town);
        setIndustry(industry);
        setCompany(company);
+       setSortBy(sortBy);
       }
     
       const clear= ()=>      {
         setTown('');
         setIndustry('');
         setCompany('');
+        setSortBy(0);
       }
       const changePageCallback = (pageNumber: number) => {
         setPage(pageNumber);

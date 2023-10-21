@@ -17,29 +17,32 @@ function Deleted() {
     const [town, setTown] = useState('');
     const [industry, setIndustry] = useState('');
     const [count, setCount] = useState(0);
+    const [sortBy, setSortBy] = useState(1);
 
     const fetchAllDeletedCompanies = useCallback(async () => {
       try {
         const apiClient = new TierApi();
-        const response = await apiClient.GetTier2Deleted(page, rowsPerPage, company, town, industry);
+        const response = await apiClient.GetTier2Deleted(page, rowsPerPage, company, town, industry, sortBy);
         setTierDataList(response?.data?.companies);
         setCount(response.data.count);
       }catch(e) {
         console.log(e);
       }
-      },[page, rowsPerPage, company, town, industry]);
+      },[page, rowsPerPage, company, town, industry, sortBy]);
 
-      const search =(company:string,town: string,industry: string) =>
+      const search =(company:string,town: string,industry: string, sortBy: number) =>
       {
        setTown(town);
        setIndustry(industry);
        setCompany(company);
+       setSortBy(sortBy);
       }
     
       const clear= ()=>      {
         setTown('');
         setIndustry('');
         setCompany('');
+        setSortBy(1);
       }
 
 

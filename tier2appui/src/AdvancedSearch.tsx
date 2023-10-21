@@ -1,9 +1,9 @@
 import { Button, Grid, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import React, {  SyntheticEvent, useState } from 'react';
 import industries from './Industries';
-
+ 
 type AdvancedSearchProps = {
-   searchCallBack: (company: string, town: string, industry: string) => void;
+   searchCallBack: (company: string, town: string, industry: string, sortBy: number) => void;
    filterClearCallBack: () => void;
 };
  
@@ -12,13 +12,15 @@ const AdvancedSearch  = ({ searchCallBack, filterClearCallBack }:  AdvancedSearc
   const [company, setCompany] = useState('');
   const [town, setTown] = useState('');
   const [industry, setIndustry] = useState('');
-  
+ 
+  const [sortBy, setSortBy] = useState('0');
   const filterClearClick = () =>
   {
    
     setCompany('');
     setTown('');
     setIndustry('');
+    setSortBy('0');
     
     filterClearCallBack();
   };
@@ -37,10 +39,15 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
     setIndustry(e.target.value);
 };
 
+const setSortByHandler = (e:SelectChangeEvent<string>) =>  {
+  
+  setSortBy(e.target.value);
+};
+
   const searchClick =( e:SyntheticEvent) =>  
   {
     e.preventDefault();
-    searchCallBack(company, town, industry);
+    searchCallBack(company, town, industry, parseInt(sortBy));
   }
   
   return(
@@ -48,7 +55,7 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
   <Grid container={true} spacing={2} 
    alignItems="center"
   >
-        <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
+        <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
         <TextField
         sx= {{fontSize: '0.75rem',
         fontWeight: '500'}}
@@ -61,7 +68,7 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
           value={company}
         />
         </Grid>
-        <Grid item xs={4}  sm={4} md={4} lg={4} xl={4}>
+        <Grid item xs={3} sm={3} md={3} lg={3} xl={3}>
         <TextField
                 sx= {{fontSize: '0.75rem',
                 fontWeight: '500'}}
@@ -75,7 +82,7 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
               />
             
         </Grid>
-        <Grid item xs={4} sm={4} md={4} lg={4} xl={4} width={.08}>
+        <Grid item xs={3} sm={3} md={3} lg={3} xl={3} width={.08}>
         <Select 
             displayEmpty
             sx={{ autoWidth:'false', marginTop:'25px',
@@ -90,6 +97,24 @@ const setIndustryHandler = (e:SelectChangeEvent<string>) =>  {
             {industries.map((item,index: number)=>
             <MenuItem key={index} value={item.CategoryName}>{item.CategoryName}</MenuItem>
             )}
+          </Select>
+        </Grid>
+
+        <Grid item xs={3} sm={3} md={3} lg={3} xl={3} width={.08}>
+        <Select 
+            sx={{ autoWidth:'false', marginTop:'25px',
+            width:'100px'}}
+            variant="standard" 
+            name="sortBy" 
+            value={sortBy}
+            onChange={setSortByHandler}
+          >
+            <MenuItem value="0">
+               Sort by name ascending
+            </MenuItem>
+            <MenuItem value="1">
+             Sort by date descending
+            </MenuItem>
           </Select>
         </Grid>
         </Grid>
