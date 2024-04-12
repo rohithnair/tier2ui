@@ -1,4 +1,4 @@
-# Front end for https://uktiersponsors.co.uk
+# Frontend for https://uktiersponsors.co.uk
 
 This is a React application written in TypeScript. Below you will find the steps to set up and run the project locally using either npm or yarn.
 
