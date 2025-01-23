@@ -1,12 +1,11 @@
 import { useEffect } from "react";
-import { baseAuthURL } from "./AxiosSettings";
 
 const Logout=() => {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
           // 👇️ redirects to an external URL
-          window.location.href= baseAuthURL+'/logout?returnUrl=https://uktiersponsors.co.uk';
+          window.location.href= process.env.REACT_APP_BaseAuthUrl+'/logout?returnUrl='+process.env.REACT_APP_AuthenticationReturnUrl;
         }, 3);
     
         return () => clearTimeout(timeout);

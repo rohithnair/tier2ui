@@ -6,7 +6,6 @@ import { AuthProvider } from './AuthContext';
 import { Provider } from 'react-redux';
 import store from './store';
 
-
 type Props = {
   children?: React.ReactNode
 };
@@ -29,10 +28,9 @@ const theme = createTheme({
   },
 });
 
+
   const Layout = ({ children }: Props)  => {
 
-
-    
     return(<>
      <AuthProvider>
      <Provider store={store}>

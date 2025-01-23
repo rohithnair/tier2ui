@@ -10,7 +10,7 @@ function Footer() {
     <React.Fragment>
       <AppBar position="relative" color="primary">
         <Toolbar>
-          © UKTierSponsors  2023. Disclaimer : Data extracted from&nbsp;&nbsp;
+          © UKTierSponsors  2025. Disclaimer : Data extracted from&nbsp;&nbsp;
 
           <Link color="inherit"
             href="http://www.ukba.homeoffice.gov.uk/sitecontent/documents/employersandsponsors/pointsbasedsystem/pbsregisterofsponsors"

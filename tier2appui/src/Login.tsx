@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { baseAuthURL } from "./AxiosSettings";
 
 const Login=() => {
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-          window.location.href= baseAuthURL+'/login?returnUrl=https://uktiersponsors.co.uk/callback';
+          window.location.href= process.env.REACT_APP_BaseAuthUrl+'/login?returnUrl='+ process.env.REACT_APP_AuthenticationReturnUrl;
         }, 3);
     
         return () => clearTimeout(timeout);

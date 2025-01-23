@@ -26,6 +26,24 @@ const ReleaseNotes = () =>  {
         divider={<Divider orientation="horizontal" flexItem />}
         spacing={2}
       >
+
+          <Item>
+            <Typography variant= "h5" >
+            21/01/2025</Typography>
+            <Typography variant= "h6" >
+            Version 2.0.1</Typography>
+            <List sx={{listStyleType: 'disc', pl: 4 }}>
+            <ListItem sx={{ display: 'list-item' }}>
+                  <ListItemText
+                    primary="Relaunch using new hosting provider"
+                  />
+                  <ListItemText sx={{ display: 'list-item' }} 
+                    primary="Relaunched the website with a new hosting provider"
+                  />
+                </ListItem>
+                </List>
+            </Item>
+
         <Item>
             <Typography variant= "h5" >
             01/04/2023</Typography>
