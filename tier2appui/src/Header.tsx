@@ -152,16 +152,10 @@ function Header() {
             </List>
             <Divider />
             <List>
-                <ListItemButton component="a" key={'TellYourStory'} color="inherit" target="_self" href="https://amazingstories.uktiersponsors.co.uk" rel="nofollow noopener noreferrer">
-                    <ListItemIcon><FavoriteIcon /></ListItemIcon>
-                    <ListItemText primary={'Tell Your Story'} />
-                </ListItemButton>
-
                 <ListItemButton component="a" key={'JoinSlack'} color="inherit" target="_blank" href="https://join.slack.com/t/uktiersponsors/shared_invite/enQtNzU3NDIxNjExOTU4LTZlODFjNDMyZDlkNWE5NjY4OTE2OTc4NjZmMGM2NmE2MWVhMjdjMjMzYmQ2MzAzYzZhNDU4Zjc1OWZhZDc5ZDA" rel="nofollow noopener noreferrer">
                     <ListItemIcon><ForumIcon /></ListItemIcon>
                     <ListItemText primary={'Join slack community'} />
                 </ListItemButton>
-
             </List>
             <Divider />
             <List>
