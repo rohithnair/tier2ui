@@ -42,8 +42,7 @@ const ReleaseNotes = () =>  {
                   />
                 </ListItem>
                 </List>
-            </Item>
-
+          </Item>
         <Item>
             <Typography variant= "h5" >
             01/04/2023</Typography>
