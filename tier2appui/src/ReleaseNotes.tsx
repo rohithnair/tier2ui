@@ -27,6 +27,20 @@ const ReleaseNotes = () =>  {
         spacing={2}
       >
 
+            <Item>
+            <Typography variant= "h5" >
+            18/09/2025</Typography>
+            <Typography variant= "h6" >
+            Version 2.0.2</Typography>
+            <List sx={{listStyleType: 'disc', pl: 4 }}>
+            <ListItem sx={{ display: 'list-item' }}>
+                  <ListItemText sx={{ display: 'list-item' }} 
+                    primary="Addition of chat feature to help users find companies in the sponsor list"
+                  />
+                </ListItem>
+                </List>
+          </Item>
+
           <Item>
             <Typography variant= "h5" >
             21/01/2025</Typography>

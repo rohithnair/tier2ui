@@ -24,6 +24,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SecurityIcon from '@mui/icons-material/Security';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import InfoIcon from '@mui/icons-material/Info';
+import ChatIcon from '@mui/icons-material/Chat';
 
 function Header() {
 
@@ -73,6 +74,13 @@ function Header() {
       navigate("/deleted", {replace:false});
     }   
 
+    const handleChatClick=( e:SyntheticEvent) =>  
+    {
+      e.preventDefault();
+      navigate("/chat", {replace:false});
+    }   
+
+
     const handleAboutUsClick=( e:SyntheticEvent) =>  
     {
       e.preventDefault();
@@ -117,6 +125,12 @@ function Header() {
                     <ListItemIcon><DeleteIcon /></ListItemIcon>
                     <ListItemText primary={'Deleted'} />
                 </ListItemButton>
+
+                <ListItemButton  onClick={handleChatClick} component="a" key={'Chat'} color="inherit" target="_self">
+                    <ListItemIcon><ChatIcon /></ListItemIcon>
+                    <ListItemText primary={'Chat'} />
+                </ListItemButton>
+
                 </List>
                 <Divider />
                 <List> 
@@ -221,6 +235,12 @@ function Header() {
                             Deleted companies
                         </Typography> : <React.Fragment></React.Fragment>}
 
+                     {location.pathname === '/chat' ?
+                        <Typography variant="h6" color="inherit">
+                            Chat
+                        </Typography> : <React.Fragment></React.Fragment>}
+
+
                     <Typography variant="h6" color="inherit">
 
                         <Box sx={{marginLeft:2}}>
@@ -231,6 +251,16 @@ function Header() {
                         </a>
                         </Box>
                         </Typography>
+
+
+                    <Typography variant="h6" color="inherit">
+                        <Box sx={{marginLeft:2}}>
+                            <IconButton  onClick={handleChatClick} color="inherit" style={{ color: "white" }}>
+                                <ChatIcon />
+                            </IconButton>
+                        </Box>
+                        </Typography>
+
                         <Box sx={{ display: { xs: 'none', sm: 'block', marginLeft:'auto' } }}>
                         {isAuthenticated? 
                         <>
