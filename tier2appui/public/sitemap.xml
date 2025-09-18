@@ -36,4 +36,10 @@
 	  <changefreq>daily</changefreq>
 	  <priority>0.5</priority>
   </url>
+     <url>
+    <loc>https://uktiersponsors.co.uk/chat</loc>
+    <lastmod>2025-09-17</lastmod>
+	  <changefreq>daily</changefreq>
+	  <priority>0.5</priority>
+  </url>
 </urlset>

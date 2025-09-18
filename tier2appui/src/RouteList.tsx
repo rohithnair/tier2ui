@@ -1,4 +1,3 @@
-
 import { FC } from "react";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -12,44 +11,27 @@ import Logout from "./Logout";
 import PrivacyPolicy from "./PrivacyPolicy";
 import AboutUs from "./AboutUs";
 import ReleaseNotes from "./ReleaseNotes";
+import TierDataChat from "./Chat";
 
- const RouteList:FC = () => {
-     
-    return (
- 
-        <BrowserRouter>
-        <Routes>
-        <Route  path="*" element={
-             <Layout><All/></Layout>} >
-        </Route>
-        <Route  path="/" element={
-             <Layout><All/></Layout>} >
-        </Route>
-        <Route  path="/recent" element={
-             <Layout><App/></Layout>} >
-        </Route>
-        <Route  path="/all" element={
-             <Layout><All/></Layout>} >
-        </Route>
-        <Route  path="/deleted" element={
-             <Layout><Deleted/></Layout>} >
-        </Route>
-        <Route path= "/login" element = {<Login/> }/>
-
-        <Route path= "/logout" element={<Logout/> }/>
-
-        <Route path= "/callback" element={<Layout><AuthCallBack/></Layout> }/>
-
-        <Route path= "/privacy-policy" element={<Layout><PrivacyPolicy/></Layout> }/>
-
-        
-        <Route path= "/about-us" element={<Layout><AboutUs/></Layout> }/>
-
-                
-        <Route path= "/release-notes" element={<Layout><ReleaseNotes/></Layout> }/>
-        </Routes>
-      </BrowserRouter>
-    );
-  }
+const RouteList: FC = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<Layout><All /></Layout>} />
+        <Route path="/" element={<Layout><All /></Layout>} />
+        <Route path="/recent" element={<Layout><App /></Layout>} />
+        <Route path="/all" element={<Layout><All /></Layout>} />
+        <Route path="/deleted" element={<Layout><Deleted /></Layout>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/callback" element={<Layout><AuthCallBack /></Layout>} />
+        <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
+        <Route path="/about-us" element={<Layout><AboutUs /></Layout>} />
+        <Route path="/release-notes" element={<Layout><ReleaseNotes /></Layout>} />
+        <Route path="/chat" element={<Layout><TierDataChat /></Layout>} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 export default RouteList;
