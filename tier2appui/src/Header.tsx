@@ -17,7 +17,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Box, Button, ListItemButton, Tooltip } from '@mui/material';
+import { Badge, Box, Button, ListItemButton, Tooltip } from '@mui/material';
 import { useAuth } from './AuthContext';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -255,7 +255,9 @@ function Header() {
 
                     <Typography variant="h6" color="inherit">
                         <Box sx={{marginLeft:2}}>
-                            <IconButton  onClick={handleChatClick} color="inherit" style={{ color: "white" }}>
+                            <IconButton  
+                              sx={{ color: 'orange', '&:hover': { color: 'yellow', transform: 'scale(1.2)' }, transition: '0.2s' }}
+                            onClick={handleChatClick} color="inherit" style={{ color: "orange" }}>
                                 <ChatIcon />
                             </IconButton>
                         </Box>
